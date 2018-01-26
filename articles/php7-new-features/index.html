@@ -17,11 +17,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>hello world - Web架构之路 - The way of Web Architecture</title>
+<title>php7新特性 - Web架构之路 - The way of Web Architecture</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="Web架构之路">
+<meta name="description " content="函数返回值类型声明、标量类型声明">
 </head>
 <body>
 <div id="nav">
@@ -113,7 +113,39 @@
     <ul>
         <li><a href="/">Index</a></li>
         
-        
+            
+                <li class="active">
+                    <a href="/categories/PHP" data-name="PHP">PHP</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Linux" data-name="Linux">Linux</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MySQL" data-name="MySQL">MySQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Queue" data-name="Queue">Queue</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/ES" data-name="ES">ES</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/GO" data-name="GO">GO</a>
+                </li>
+            
         
         <!--
 <li class="page-search">
@@ -164,26 +196,115 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="" target="_blank"></a>
-                    <span title="最后编辑于2018-01-25">2018-01-25</span>
+                    <span title="最后编辑于2018-01-26">2018-01-26</span>
                 </p>
                 <p></p>
             </div>
             -->
-            <h2 class="post-title">Hello World</h2>
+            <h2 class="post-title">PHP7新特性</h2>
             <div class="post-meta">
-                本文总共430个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
+                本文总共2223个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h2 id="1-运算符（NULL-合并运算符）"><a href="#1-运算符（NULL-合并运算符）" class="headerlink" title="1. ??运算符（NULL 合并运算符）"></a>1. ??运算符（NULL 合并运算符）</h2><p>这是一个很实用的用法：</p>
+<p>$a = $_GET[‘a’] ?? 1;</p>
+<p>它相当于：</p>
+<p>$a = isset($_GET[‘a’]) ? $_GET[‘a’] : 1;</p>
+<p>我们知道三元运算符是可以这样用的：</p>
+<p>$a ?: 1</p>
+<p>但是这是建立在 $a 已经定义了的前提上。新增的 ?? 运算符可以简化判断。</p>
+<h2 id="2-函数返回值类型声明"><a href="#2-函数返回值类型声明" class="headerlink" title="2. 函数返回值类型声明"></a>2. 函数返回值类型声明</h2><p>官方文档提供的例子（注意 … 的边长参数语法在 PHP 5.6 以上的版本中才有）：</p>
+<pre><code>function arraysSum(array ...$arrays): array 
+
+{ 
+
+　　return array_map(function(array $array): int { 
+
+　　　　return array_sum($array); 
+
+ 　　}, $arrays); 
+
+} 
+
+print_r(arraysSum([1,2,3], [4,5,6], [7,8,9])); 
+</code></pre><p>以上输出：</p>
+<pre><code>Array
+(
+    [0] =&gt; 6
+    [1] =&gt; 15
+    [2] =&gt; 24
+)
+</code></pre><p>从这个例子中可以看出现在函数（包括匿名函数）都可以指定返回值的类型。</p>
+<p>这个特性可以帮助我们避免一些 PHP 的隐式类型转换带来的问题。在定义一个函数之前就想好预期的结果可以避免一些不必要的错误。</p>
+<p>不过这里也有一个特点需要注意。PHP 7 增加了一个 declare 指令：strict_types，既使用严格模式。</p>
+<p>使用返回值类型声明时，如果没有声明为严格模式，如果返回值不是预期的类型，PHP 还是会对其进行强制类型转换。但是如果是严格模式， 则会出发一个 TypeError 的 Fatal error。</p>
+<p><strong>强制模式</strong>：</p>
+<pre><code>function foo($a) : int 
+
+{ 
+
+　　return $a; 
+
+} 
+
+foo(1.0); 
+</code></pre><p>以上代码可以正常执行，foo 函数返回 int 1，没有任何错误。</p>
+<p><strong>严格模式：</strong></p>
+<pre><code>declare(strict_types=1); 
+
+function foo($a) : int 
+
+{ 
+
+　　return $a; 
+
+} 
+
+foo(1.0); 
+</code></pre><blockquote>
+<p>PHP Fatal error:  Uncaught TypeError: Return value of foo() must be of the type integer, float returned in test.php:6 </p>
+</blockquote>
+<p>在声明之后，就会触发致命错误。</p>
+<p>是不是有点类似与 js 的 strict mode？</p>
+<h2 id="3-标量类型声明"><a href="#3-标量类型声明" class="headerlink" title="3. 标量类型声明"></a>3. 标量类型声明</h2><p>PHP 7 中的函数的形参类型声明可以是标量了。在 PHP 5 中只能是类名、接口、array 或者 callable (PHP 5.4，即可以是函数，包括匿名函数)，现在也可以使用 string、int、float和 bool 了。</p>
+<p>官方示例：</p>
+<pre><code>// Coercive mode 
+
+function sumOfInts(int ...$ints) 
+
+{ 
+
+　　return array_sum($ints); 
+
+} 
+
+var_dump(sumOfInts(2, &apos;3&apos;, 4.1)); 
+</code></pre><p>以上输出：</p>
+<blockquote>
+<p>int(9)</p>
+</blockquote>
+<p>需要注意的是上文提到的严格模式的问题在这里同样适用：强制模式（默认，既强制类型转换）下还是会对不符合预期的参数进行强制类型转换，严格模式下则触发 TypeError 的致命错误。</p>
+<h2 id="4-use批量声明"><a href="#4-use批量声明" class="headerlink" title="4. use批量声明"></a>4. use批量声明</h2><p>PHP 7 中 use 可以在一句话中声明多个类或函数或 const 了：</p>
+<pre><code>use some/namespace/{ClassA, ClassB, ClassC as C}; 
+
+use function some/namespace/{fn_a, fn_b, fn_c}; 
+
+use const some/namespace/{ConstA, ConstB, ConstC}; 
+</code></pre><p>但还是要写出每个类或函数或 const 的名称（并没有像 python 一样的 from some import * 的方法）。</p>
+<p>需要留意的问题是：如果你使用的是基于 composer 和 PSR-4 的框架，这种写法是否能成功的加载类文件？其实是可以的，composer 注册的自动加载方法是在类被调用的时候根据类的命名空间去查找位置，这种写法对其没有影响。</p>
+<h2 id="5-其它特性"><a href="#5-其它特性" class="headerlink" title="5. 其它特性"></a>5. 其它特性</h2><ul>
+<li>PHP 5.3 开始有了匿名函数，现在又有了匿名类了；</li>
+<li>define 现在可以定义常量数组；</li>
+<li>闭包（ Closure）增加了一个 call 方法；</li>
+<li>生成器（或者叫迭代器更合适）可以有一个最终返回值（return），也可以通过 yield from 的新语法进入一个另外一个生成器中（生成器委托）。</li>
+<li>生成器的两个新特性（return 和 yield from）可以组合。具体的表象大家可以自行测试。PHP 7 现在已经到 RC5 了，最终的版本应该会很快到来。</li>
+</ul>
+<p>其它特性可以查看官方文档：</p>
+<blockquote>
+<p><a href="http://php.net/manual/en/migration70.new-features.php" target="_blank" rel="noopener">http://php.net/manual/en/migration70.new-features.php</a></p>
+</blockquote>
+<p>来源：<a href="http://0x1.im/blog/php/part-of-php7-new-features.html" target="_blank" rel="noopener">http://0x1.im/blog/php/part-of-php7-new-features.html</a></p>
 
         </div>
         <div class="post-tool">
@@ -193,6 +314,8 @@
         </div>
         
         <div class="post-tags">标签：
+            
+            <a href="/tags/PHP/">PHP</a>
             
         </div>
         
