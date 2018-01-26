@@ -147,7 +147,15 @@
                 </li>
             
         
-        <!--
+        <script>
+(function (window) {
+    window.INSIGHT_CONFIG = {
+        ROOT_URL: '/',
+        CONTENT_URL: '',
+    };
+})(window);
+</script>
+<!--
 <li class="page-search">
     <form id="search" class="search-form">
         <label for="s" class="sr-only">Input Search key Words Here</label>
