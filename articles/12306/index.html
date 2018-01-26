@@ -17,11 +17,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>hello world - Web架构之路 - The way of Web Architecture</title>
+<title>12306抢票神器！可绕过验证码和自动刷新 - Web架构之路 - The way of Web Architecture</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="PHP5.5+版本以上的，可以使用PHP自带的opcache开启性能加速（默认是关闭的）。对于PHP5.5以下版本的，需要使用APC加速">
+<meta name="description " content="央视报道了黄牛党如何利用抢票神器刷票，这说明什么？说明这就是刚需！">
 </head>
 <body>
 <div id="nav">
@@ -33,49 +33,49 @@
         <!-- custom single page of menus -->
         
         
-        <a href="/PHP" title="PHP">
+        <a href="/categories/PHP" title="PHP">
             <i class="fa fa-product-hunt"></i>
             <span>PHP</span>
         </a>
         
         
-        <a href="/MySQL" title="MySQL">
+        <a href="/categories/MySQL" title="MySQL">
             <i class="fa fa-maxcdn"></i>
             <span>MySQL</span>
         </a>
         
         
-        <a href="/Linux" title="Linux">
+        <a href="/categories/Linux" title="Linux">
             <i class="fa fa-linux"></i>
             <span>Linux</span>
         </a>
         
         
-        <a href="/Nginx" title="Nginx">
+        <a href="/categories/Nginx" title="Nginx">
             <i class="fa fa-server"></i>
             <span>Nginx</span>
         </a>
         
         
-        <a href="/NoSQL" title="NoSQL">
+        <a href="/categories/NoSQL" title="NoSQL">
             <i class="fa fa-registered"></i>
             <span>NoSQL</span>
         </a>
         
         
-        <a href="/Queue" title="Queue">
+        <a href="/categories/Queue" title="Queue">
             <i class="fa fa-quora"></i>
             <span>Queue</span>
         </a>
         
         
-        <a href="/ES" title="ES">
+        <a href="/categories/ES" title="ES">
             <i class="fa fa-etsy"></i>
             <span>ES</span>
         </a>
         
         
-        <a href="/GO" title="GO">
+        <a href="/categories/GO" title="GO">
             <i class="fa fa-google"></i>
             <span>GO</span>
         </a>
@@ -196,152 +196,38 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="" target="_blank"></a>
-                    <span title="最后编辑于2014-09-12">2014-09-12</span>
+                    <span title="最后编辑于2014-01-08">2014-01-08</span>
                 </p>
                 <p></p>
             </div>
             -->
-            <h2 class="post-title">Hello World</h2>
+            <h2 class="post-title">12306抢票神器！可绕过验证码和自动刷新</h2>
             <div class="post-meta">
-                本文发布于：2014-09-12，总共2822个字，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
+                本文发布于：2014-01-08，总共1028个字，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>PHP5.5+版本以上的，可以使用PHP自带的opcache开启性能加速（默认是关闭的）。对于PHP5.5以下版本的，需要使用APC加速，这里不说明，可以自行上网搜索PHP APC加速的方法。</p>
-<p>PHP开启opcache方法</p>
-<blockquote>
-<p>1、打开php.ini文件</p>
-<p>2、找到：[opcache]，设置为：</p>
-</blockquote>
-<pre><code>[opcache]
-; dll地址
-zend_extension=php_opcache.dll
-; 开关打开
-opcache.enable=1
-; 开启CLI
-opcache.enable_cli=1
-; 可用内存, 酌情而定, 单位为：Mb
-opcache.memory_consumption=528
-; Zend Optimizer + 暂存池中字符串的占内存总量.(单位:MB)
-opcache.interned_strings_buffer=8
-; 对多缓存文件限制, 命中率不到 100% 的话, 可以试着提高这个值
-opcache.max_accelerated_files=10000
-; Opcache 会在一定时间内去检查文件的修改时间, 这里设置检查的时间周期, 默认为 2, 定位为秒
-opcache.revalidate_freq=1
-; 打开快速关闭, 打开这个在PHP Request Shutdown的时候回收内存的速度会提高
-opcache.fast_shutdown=1
-</code></pre><blockquote>
-<p>3、重启apache即可。</p>
-</blockquote>
-<p>测试<br>配置完成后，可以使用如下代码查询opcache：</p>
-<pre><code>&lt;?php
-    phpinfo();
-?&gt;
-</code></pre><p>访问页面可以看到 Zend OPcache配置项。</p>
-<p>以下是opcache的配置说明：</p>
-<pre><code>[opcache]
-zend_extension = &quot;G:/PHP/php-5.5.6-Win32-VC11-x64/ext/php_opcache.dll&quot;
-
-; Zend Optimizer + 的开关, 关闭时代码不再优化.
-opcache.enable=1
-
-; Determines if Zend OPCache is enabled for the CLI version of PHP
-opcache.enable_cli=1
-
-
-; Zend Optimizer + 共享内存的大小, 总共能够存储多少预编译的 PHP 代码(单位:MB)
-; 推荐 128
-opcache.memory_consumption=64
-
-; Zend Optimizer + 暂存池中字符串的占内存总量.(单位:MB)
-; 推荐 8
-opcache.interned_strings_buffer=4
-
-
-; 最大缓存的文件数目 200  到 100000 之间
-; 推荐 4000
-opcache.max_accelerated_files=2000
-
-; 内存“浪费”达到此值对应的百分比,就会发起一个重启调度.
-opcache.max_wasted_percentage=5
-
-; 开启这条指令, Zend Optimizer + 会自动将当前工作目录的名字追加到脚本键上,
-; 以此消除同名文件间的键值命名冲突.关闭这条指令会提升性能,
-; 但是会对已存在的应用造成破坏.
-opcache.use_cwd=0
-
-
-; 开启文件时间戳验证 
-opcache.validate_timestamps=1
-
-
-; 2s检查一次文件更新 注意:0是一直检查不是关闭
-; 推荐 60
-opcache.revalidate_freq=2
-
-; 允许或禁止在 include_path 中进行文件搜索的优化
-;opcache.revalidate_path=0
-
-
-; 是否保存文件/函数的注释   如果apigen、Doctrine、 ZF2、 PHPUnit需要文件注释
-; 推荐 0
-opcache.save_comments=1
-
-; 是否加载文件/函数的注释
-;opcache.load_comments=1
-
-
-; 打开快速关闭, 打开这个在PHP Request Shutdown的时候会收内存的速度会提高
-; 推荐 1
-opcache.fast_shutdown=1
-
-;允许覆盖文件存在（file_exists等）的优化特性。
-;opcache.enable_file_override=0
-
-
-; 定义启动多少个优化过程
-;opcache.optimization_level=0xffffffff
-
-
-; 启用此Hack可以暂时性的解决”can’t redeclare class”错误.
-;opcache.inherited_hack=1
-
-; 启用此Hack可以暂时性的解决”can’t redeclare class”错误.
-;opcache.dups_fix=0
-
-; 设置不缓存的黑名单
-; 不缓存指定目录下cache_开头的PHP文件. /png/www/example.com/public_html/cache/cache_ 
-;opcache.blacklist_filename=
-
-
-; 通过文件大小屏除大文件的缓存.默认情况下所有的文件都会被缓存.
-;opcache.max_file_size=0
-
-; 每 N 次请求检查一次缓存校验.默认值0表示检查被禁用了.
-; 由于计算校验值有损性能,这个指令应当紧紧在开发调试的时候开启.
-;opcache.consistency_checks=0
-
-; 从缓存不被访问后,等待多久后(单位为秒)调度重启
-;opcache.force_restart_timeout=180
-
-; 错误日志文件名.留空表示使用标准错误输出(stderr).
-;opcache.error_log=
-
-
-; 将错误信息写入到服务器(Apache等)日志
-;opcache.log_verbosity_level=1
-
-; 内存共享的首选后台.留空则是让系统选择.
-;opcache.preferred_memory_model=
-
-; 防止共享内存在脚本执行期间被意外写入, 仅用于内部调试.
-;opcache.protect_memory=0
-</code></pre><p>文章参考</p>
-<blockquote>
-<p>测试opcache缓存开启前后的性能差异 <a href="https://jingyan.baidu.com/article/d7130635235d4f13fcf47545.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/d7130635235d4f13fcf47545.html</a></p>
-<p>使用 OpCache 提升 PHP 5.5+ 程序性能 <a href="https://phphub.org/topics/301" target="_blank" rel="noopener">https://phphub.org/topics/301</a></p>
-<p>php opcache 配置 <a href="https://blog.hackroad.com/operations-engineer/windows_server/9311.html" target="_blank" rel="noopener">https://blog.hackroad.com/operations-engineer/windows_server/9311.html</a></p>
-</blockquote>
+            <p><strong>12306抢票神器</strong>，项目地址： <a href="https://github.com/yaosine/12306" target="_blank" rel="noopener">https://github.com/yaosine/12306</a></p>
+<p>2014年1月8日，央视报道了黄牛党如何利用抢票神器刷票，这说明什么？说明这就是刚需！没错，每到逢年过节，12306都要面临巨大考验，尤其是春运。因为我也是其中一份，看到自己和身边的朋友总因为抢票发愁，于是找个时间来研究研究，写出了一个简单实用的抢票神器，适合放票时秒抢，因为不用填写验证码，可大大提高下单时间，已成功造福身边的非技术同事，代码如下：</p>
+<p><img src="/images/12306.jpg"></p>
+<p><strong>BUG解析</strong>：</p>
+<p>其实这个BUG很简单，12306的自动刷新功能本身就有自动刷票功能，只是时间限制在5秒一次，查看源代码发现引用了jQuery，那就好办了，咱们先把时间给改了，重新定义window.setTimeout，当时间为咱们设定时间时立即执行：</p>
+<pre><code>//循环刷新
+window.setTimeout2 = window.setTimeout;
+window.setTimeout = function(f, t){
+    if(t == sj) window.setTimeout2(f, sj);
+    else window.setTimeout2(f, t);
+}
+</code></pre><p>这里的st就是咱们设定的时间，这样，咱们就可以设置1秒刷N次了。<br>接下来看如何绕过验证码，在源代码里查询到获取验证码有一个js函数refreshImg，三个参数，这好办了，咱们也重新定义一下：</p>
+<pre><code>var refreshImg2 = refreshImg;
+refreshImg = function(a,b,c){ return true }//验证码过滤
+</code></pre><p>这样，获取验证码时调用的是一个空的函数，当然就不会获取新的验证码了。</p>
+<p>获取验证码，在新页面打开URL即可拿到: </p>
+<pre><code>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand
+</code></pre><p>当满足条件时立即填入验证码：</p>
+<pre><code>$(&apos;#randCode, #randCode2&apos;).val(yzm).keyup();//填入验证码
+</code></pre><p>填入后会自动检测是否正确，只要正确就立马提交，这时，你已经下单成功！</p>
+<p><strong>BUG就在这里！</strong>下单前只是在前端获取新验证码，咱们能容易能把这一步控制，所以解决办法是，当满足下单条件时，一定要在服务端程序里更新或清除验证码，然后前端再在获取新验证码。</p>
 
         </div>
         <div class="post-tool">
@@ -352,9 +238,7 @@ opcache.fast_shutdown=1
         
         <div class="post-tags">Tags：
             
-            <a href="/tags/PHP/">PHP</a>
-            
-            <a href="/tags/opcache/">opcache</a>
+            <a href="/tags/12306/">12306</a>
             
         </div>
         
