@@ -17,11 +17,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>12306抢票神器！可绕过验证码和自动刷新 - Web架构之路 - The way of Web Architecture</title>
+<title>标签 - Web架构之路 - The way of Web Architecture</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="央视报道了黄牛党如何利用抢票神器刷票，这说明什么？说明这就是刚需！">
+<meta name="description " content="Web架构之路">
 </head>
 <body>
 <div id="nav">
@@ -111,42 +111,7 @@
 </div>
             <div class="page-title">
     <ul>
-        <li><a href="/">Index</a></li>
-        
-            
-                <li class="active">
-                    <a href="/categories/PHP" data-name="PHP">PHP</a>
-                </li>
-            
-                <li class="">
-                    <a href="/categories/Linux" data-name="Linux">Linux</a>
-                </li>
-            
-                <li class="">
-                    <a href="/categories/MySQL" data-name="MySQL">MySQL</a>
-                </li>
-            
-                <li class="">
-                    <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
-                </li>
-            
-                <li class="">
-                    <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
-                </li>
-            
-                <li class="">
-                    <a href="/categories/Queue" data-name="Queue">Queue</a>
-                </li>
-            
-                <li class="">
-                    <a href="/categories/ES" data-name="ES">ES</a>
-                </li>
-            
-                <li class="">
-                    <a href="/categories/GO" data-name="GO">GO</a>
-                </li>
-            
-        
+        <li><a href="/">最近文章</a></li>
         <!--
 <li class="page-search">
     <form id="search" class="search-form">
@@ -196,50 +161,23 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="" target="_blank"></a>
-                    <span title="最后编辑于2014-01-08">2014-01-08</span>
+                    <span title="最后编辑于2018-01-26">2018-01-26</span>
                 </p>
                 <p></p>
             </div>
             -->
-            <h2 class="post-title">12306抢票神器！可绕过验证码和自动刷新</h2>
+            <h2 class="post-title">tags</h2>
             <div class="post-meta">
-                本文总共1028个字，发布于：2014-01-08，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
+                本文总共0个字，发布于：2018-01-26，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p><strong>12306抢票神器</strong>，项目地址： <a href="https://github.com/yaosine/12306" target="_blank" rel="noopener">https://github.com/yaosine/12306</a></p>
-<p>2014年1月8日，央视报道了黄牛党如何利用抢票神器刷票，这说明什么？说明这就是刚需！没错，每到逢年过节，12306都要面临巨大考验，尤其是春运。因为我也是其中一份，看到自己和身边的朋友总因为抢票发愁，于是找个时间来研究研究，写出了一个简单实用的抢票神器，适合放票时秒抢，因为不用填写验证码，可大大提高下单时间，已成功造福身边的非技术同事，代码如下：</p>
-<p><img src="/images/12306.jpg"></p>
-<p><strong>BUG解析</strong>：</p>
-<p>其实这个BUG很简单，12306的自动刷新功能本身就有自动刷票功能，只是时间限制在5秒一次，查看源代码发现引用了jQuery，那就好办了，咱们先把时间给改了，重新定义window.setTimeout，当时间为咱们设定时间时立即执行：</p>
-<pre><code>//循环刷新
-window.setTimeout2 = window.setTimeout;
-window.setTimeout = function(f, t){
-    if(t == sj) window.setTimeout2(f, sj);
-    else window.setTimeout2(f, t);
-}
-</code></pre><p>这里的st就是咱们设定的时间，这样，咱们就可以设置1秒刷N次了。<br>接下来看如何绕过验证码，在源代码里查询到获取验证码有一个js函数refreshImg，三个参数，这好办了，咱们也重新定义一下：</p>
-<pre><code>var refreshImg2 = refreshImg;
-refreshImg = function(a,b,c){ return true }//验证码过滤
-</code></pre><p>这样，获取验证码时调用的是一个空的函数，当然就不会获取新的验证码了。</p>
-<p>获取验证码，在新页面打开URL即可拿到: </p>
-<pre><code>https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=login&amp;rand=sjrand
-</code></pre><p>当满足条件时立即填入验证码：</p>
-<pre><code>$(&apos;#randCode, #randCode2&apos;).val(yzm).keyup();//填入验证码
-</code></pre><p>填入后会自动检测是否正确，只要正确就立马提交，这时，你已经下单成功！</p>
-<p><strong>BUG就在这里！</strong>下单前只是在前端获取新验证码，咱们能容易能把这一步控制，所以解决办法是，当满足下单条件时，一定要在服务端程序里更新或清除验证码，然后前端再在获取新验证码。</p>
-
+            
         </div>
         <div class="post-tool">
             <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
                 <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
             </a>
-        </div>
-        
-        <div class="post-tags">标签：
-            
-            <a href="/tags/12306/">12306</a>
-            
         </div>
         
     </article>
