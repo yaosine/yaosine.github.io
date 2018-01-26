@@ -17,11 +17,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>php7新特性 - Web架构之路 - The way of Web Architecture</title>
+<title>hello world - Web架构之路 - The way of Web Architecture</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="函数返回值类型声明、标量类型声明">
+<meta name="description " content="PHP5.5+版本以上的，可以使用PHP自带的opcache开启性能加速（默认是关闭的）。对于PHP5.5以下版本的，需要使用APC加速">
 </head>
 <body>
 <div id="nav">
@@ -196,115 +196,152 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="" target="_blank"></a>
-                    <span title="最后编辑于2018-01-26">2018-01-26</span>
+                    <span title="最后编辑于2018-01-25">2018-01-25</span>
                 </p>
                 <p></p>
             </div>
             -->
-            <h2 class="post-title">PHP7新特性</h2>
+            <h2 class="post-title">Hello World</h2>
             <div class="post-meta">
-                本文总共2223个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
+                本文总共2822个字 | 您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2 id="1-运算符（NULL-合并运算符）"><a href="#1-运算符（NULL-合并运算符）" class="headerlink" title="1. ??运算符（NULL 合并运算符）"></a>1. ??运算符（NULL 合并运算符）</h2><p>这是一个很实用的用法：</p>
-<p>$a = $_GET[‘a’] ?? 1;</p>
-<p>它相当于：</p>
-<p>$a = isset($_GET[‘a’]) ? $_GET[‘a’] : 1;</p>
-<p>我们知道三元运算符是可以这样用的：</p>
-<p>$a ?: 1</p>
-<p>但是这是建立在 $a 已经定义了的前提上。新增的 ?? 运算符可以简化判断。</p>
-<h2 id="2-函数返回值类型声明"><a href="#2-函数返回值类型声明" class="headerlink" title="2. 函数返回值类型声明"></a>2. 函数返回值类型声明</h2><p>官方文档提供的例子（注意 … 的边长参数语法在 PHP 5.6 以上的版本中才有）：</p>
-<pre><code>function arraysSum(array ...$arrays): array 
-
-{ 
-
-　　return array_map(function(array $array): int { 
-
-　　　　return array_sum($array); 
-
- 　　}, $arrays); 
-
-} 
-
-print_r(arraysSum([1,2,3], [4,5,6], [7,8,9])); 
-</code></pre><p>以上输出：</p>
-<pre><code>Array
-(
-    [0] =&gt; 6
-    [1] =&gt; 15
-    [2] =&gt; 24
-)
-</code></pre><p>从这个例子中可以看出现在函数（包括匿名函数）都可以指定返回值的类型。</p>
-<p>这个特性可以帮助我们避免一些 PHP 的隐式类型转换带来的问题。在定义一个函数之前就想好预期的结果可以避免一些不必要的错误。</p>
-<p>不过这里也有一个特点需要注意。PHP 7 增加了一个 declare 指令：strict_types，既使用严格模式。</p>
-<p>使用返回值类型声明时，如果没有声明为严格模式，如果返回值不是预期的类型，PHP 还是会对其进行强制类型转换。但是如果是严格模式， 则会出发一个 TypeError 的 Fatal error。</p>
-<p><strong>强制模式</strong>：</p>
-<pre><code>function foo($a) : int 
-
-{ 
-
-　　return $a; 
-
-} 
-
-foo(1.0); 
-</code></pre><p>以上代码可以正常执行，foo 函数返回 int 1，没有任何错误。</p>
-<p><strong>严格模式：</strong></p>
-<pre><code>declare(strict_types=1); 
-
-function foo($a) : int 
-
-{ 
-
-　　return $a; 
-
-} 
-
-foo(1.0); 
+            <p>PHP5.5+版本以上的，可以使用PHP自带的opcache开启性能加速（默认是关闭的）。对于PHP5.5以下版本的，需要使用APC加速，这里不说明，可以自行上网搜索PHP APC加速的方法。</p>
+<p>PHP开启opcache方法</p>
+<blockquote>
+<p>1、打开php.ini文件</p>
+<p>2、找到：[opcache]，设置为：</p>
+</blockquote>
+<pre><code>[opcache]
+; dll地址
+zend_extension=php_opcache.dll
+; 开关打开
+opcache.enable=1
+; 开启CLI
+opcache.enable_cli=1
+; 可用内存, 酌情而定, 单位为：Mb
+opcache.memory_consumption=528
+; Zend Optimizer + 暂存池中字符串的占内存总量.(单位:MB)
+opcache.interned_strings_buffer=8
+; 对多缓存文件限制, 命中率不到 100% 的话, 可以试着提高这个值
+opcache.max_accelerated_files=10000
+; Opcache 会在一定时间内去检查文件的修改时间, 这里设置检查的时间周期, 默认为 2, 定位为秒
+opcache.revalidate_freq=1
+; 打开快速关闭, 打开这个在PHP Request Shutdown的时候回收内存的速度会提高
+opcache.fast_shutdown=1
 </code></pre><blockquote>
-<p>PHP Fatal error:  Uncaught TypeError: Return value of foo() must be of the type integer, float returned in test.php:6 </p>
+<p>3、重启apache即可。</p>
 </blockquote>
-<p>在声明之后，就会触发致命错误。</p>
-<p>是不是有点类似与 js 的 strict mode？</p>
-<h2 id="3-标量类型声明"><a href="#3-标量类型声明" class="headerlink" title="3. 标量类型声明"></a>3. 标量类型声明</h2><p>PHP 7 中的函数的形参类型声明可以是标量了。在 PHP 5 中只能是类名、接口、array 或者 callable (PHP 5.4，即可以是函数，包括匿名函数)，现在也可以使用 string、int、float和 bool 了。</p>
-<p>官方示例：</p>
-<pre><code>// Coercive mode 
+<p>测试<br>配置完成后，可以使用如下代码查询opcache：</p>
+<pre><code>&lt;?php
+    phpinfo();
+?&gt;
+</code></pre><p>访问页面可以看到 Zend OPcache配置项。</p>
+<p>以下是opcache的配置说明：</p>
+<pre><code>[opcache]
+zend_extension = &quot;G:/PHP/php-5.5.6-Win32-VC11-x64/ext/php_opcache.dll&quot;
 
-function sumOfInts(int ...$ints) 
+; Zend Optimizer + 的开关, 关闭时代码不再优化.
+opcache.enable=1
 
-{ 
+; Determines if Zend OPCache is enabled for the CLI version of PHP
+opcache.enable_cli=1
 
-　　return array_sum($ints); 
 
-} 
+; Zend Optimizer + 共享内存的大小, 总共能够存储多少预编译的 PHP 代码(单位:MB)
+; 推荐 128
+opcache.memory_consumption=64
 
-var_dump(sumOfInts(2, &apos;3&apos;, 4.1)); 
-</code></pre><p>以上输出：</p>
+; Zend Optimizer + 暂存池中字符串的占内存总量.(单位:MB)
+; 推荐 8
+opcache.interned_strings_buffer=4
+
+
+; 最大缓存的文件数目 200  到 100000 之间
+; 推荐 4000
+opcache.max_accelerated_files=2000
+
+; 内存“浪费”达到此值对应的百分比,就会发起一个重启调度.
+opcache.max_wasted_percentage=5
+
+; 开启这条指令, Zend Optimizer + 会自动将当前工作目录的名字追加到脚本键上,
+; 以此消除同名文件间的键值命名冲突.关闭这条指令会提升性能,
+; 但是会对已存在的应用造成破坏.
+opcache.use_cwd=0
+
+
+; 开启文件时间戳验证 
+opcache.validate_timestamps=1
+
+
+; 2s检查一次文件更新 注意:0是一直检查不是关闭
+; 推荐 60
+opcache.revalidate_freq=2
+
+; 允许或禁止在 include_path 中进行文件搜索的优化
+;opcache.revalidate_path=0
+
+
+; 是否保存文件/函数的注释   如果apigen、Doctrine、 ZF2、 PHPUnit需要文件注释
+; 推荐 0
+opcache.save_comments=1
+
+; 是否加载文件/函数的注释
+;opcache.load_comments=1
+
+
+; 打开快速关闭, 打开这个在PHP Request Shutdown的时候会收内存的速度会提高
+; 推荐 1
+opcache.fast_shutdown=1
+
+;允许覆盖文件存在（file_exists等）的优化特性。
+;opcache.enable_file_override=0
+
+
+; 定义启动多少个优化过程
+;opcache.optimization_level=0xffffffff
+
+
+; 启用此Hack可以暂时性的解决”can’t redeclare class”错误.
+;opcache.inherited_hack=1
+
+; 启用此Hack可以暂时性的解决”can’t redeclare class”错误.
+;opcache.dups_fix=0
+
+; 设置不缓存的黑名单
+; 不缓存指定目录下cache_开头的PHP文件. /png/www/example.com/public_html/cache/cache_ 
+;opcache.blacklist_filename=
+
+
+; 通过文件大小屏除大文件的缓存.默认情况下所有的文件都会被缓存.
+;opcache.max_file_size=0
+
+; 每 N 次请求检查一次缓存校验.默认值0表示检查被禁用了.
+; 由于计算校验值有损性能,这个指令应当紧紧在开发调试的时候开启.
+;opcache.consistency_checks=0
+
+; 从缓存不被访问后,等待多久后(单位为秒)调度重启
+;opcache.force_restart_timeout=180
+
+; 错误日志文件名.留空表示使用标准错误输出(stderr).
+;opcache.error_log=
+
+
+; 将错误信息写入到服务器(Apache等)日志
+;opcache.log_verbosity_level=1
+
+; 内存共享的首选后台.留空则是让系统选择.
+;opcache.preferred_memory_model=
+
+; 防止共享内存在脚本执行期间被意外写入, 仅用于内部调试.
+;opcache.protect_memory=0
+</code></pre><p>文章参考</p>
 <blockquote>
-<p>int(9)</p>
+<p>测试opcache缓存开启前后的性能差异 <a href="https://jingyan.baidu.com/article/d7130635235d4f13fcf47545.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/d7130635235d4f13fcf47545.html</a></p>
+<p>使用 OpCache 提升 PHP 5.5+ 程序性能 <a href="https://phphub.org/topics/301" target="_blank" rel="noopener">https://phphub.org/topics/301</a></p>
+<p>php opcache 配置 <a href="https://blog.hackroad.com/operations-engineer/windows_server/9311.html" target="_blank" rel="noopener">https://blog.hackroad.com/operations-engineer/windows_server/9311.html</a></p>
 </blockquote>
-<p>需要注意的是上文提到的严格模式的问题在这里同样适用：强制模式（默认，既强制类型转换）下还是会对不符合预期的参数进行强制类型转换，严格模式下则触发 TypeError 的致命错误。</p>
-<h2 id="4-use批量声明"><a href="#4-use批量声明" class="headerlink" title="4. use批量声明"></a>4. use批量声明</h2><p>PHP 7 中 use 可以在一句话中声明多个类或函数或 const 了：</p>
-<pre><code>use some/namespace/{ClassA, ClassB, ClassC as C}; 
-
-use function some/namespace/{fn_a, fn_b, fn_c}; 
-
-use const some/namespace/{ConstA, ConstB, ConstC}; 
-</code></pre><p>但还是要写出每个类或函数或 const 的名称（并没有像 python 一样的 from some import * 的方法）。</p>
-<p>需要留意的问题是：如果你使用的是基于 composer 和 PSR-4 的框架，这种写法是否能成功的加载类文件？其实是可以的，composer 注册的自动加载方法是在类被调用的时候根据类的命名空间去查找位置，这种写法对其没有影响。</p>
-<h2 id="5-其它特性"><a href="#5-其它特性" class="headerlink" title="5. 其它特性"></a>5. 其它特性</h2><ul>
-<li>PHP 5.3 开始有了匿名函数，现在又有了匿名类了；</li>
-<li>define 现在可以定义常量数组；</li>
-<li>闭包（ Closure）增加了一个 call 方法；</li>
-<li>生成器（或者叫迭代器更合适）可以有一个最终返回值（return），也可以通过 yield from 的新语法进入一个另外一个生成器中（生成器委托）。</li>
-<li>生成器的两个新特性（return 和 yield from）可以组合。具体的表象大家可以自行测试。PHP 7 现在已经到 RC5 了，最终的版本应该会很快到来。</li>
-</ul>
-<p>其它特性可以查看官方文档：</p>
-<blockquote>
-<p><a href="http://php.net/manual/en/migration70.new-features.php" target="_blank" rel="noopener">http://php.net/manual/en/migration70.new-features.php</a></p>
-</blockquote>
-<p>参考：<a href="http://0x1.im/blog/php/part-of-php7-new-features.html" target="_blank" rel="noopener">http://0x1.im/blog/php/part-of-php7-new-features.html</a></p>
 
         </div>
         <div class="post-tool">
@@ -315,7 +352,7 @@ use const some/namespace/{ConstA, ConstB, ConstC};
         
         <div class="post-tags">Tags：
             
-            <a href="/tags/PHP/">PHP</a>
+            <a href="/tags/PHP-opcache/">PHP, opcache</a>
             
         </div>
         
