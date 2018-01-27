@@ -1,0 +1,366 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://yaosine.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://yaosine.github.io">
+<meta name="author" content="Yaosine">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>php内核分析 - Web架构之路 - The way of Web Architecture</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="如果php是一辆车，那么车的框架就是php本身，Zend是车的引擎（发动机）, Ext下面的各种组件就是车的轮子">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="WA">WA</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-area-chart "></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/categories/PHP" title="PHP">
+            <i class="fa fa-product-hunt"></i>
+            <span>PHP</span>
+        </a>
+        
+        
+        <a href="/categories/MySQL" title="MySQL">
+            <i class="fa fa-maxcdn"></i>
+            <span>MySQL</span>
+        </a>
+        
+        
+        <a href="/categories/Linux" title="Linux">
+            <i class="fa fa-linux"></i>
+            <span>Linux</span>
+        </a>
+        
+        
+        <a href="/categories/Nginx" title="Nginx">
+            <i class="fa fa-server"></i>
+            <span>Nginx</span>
+        </a>
+        
+        
+        <a href="/categories/NoSQL" title="NoSQL">
+            <i class="fa fa-registered"></i>
+            <span>NoSQL</span>
+        </a>
+        
+        
+        <a href="/categories/Queue" title="Queue">
+            <i class="fa fa-quora"></i>
+            <span>Queue</span>
+        </a>
+        
+        
+        <a href="/categories/ES" title="ES">
+            <i class="fa fa-etsy"></i>
+            <span>ES</span>
+        </a>
+        
+        
+        <a href="/categories/GO" title="GO">
+            <i class="fa fa-google"></i>
+            <span>GO</span>
+        </a>
+        
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <!--<a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>-->
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">Web架构之路</h1>
+        <h3 class="cover-siteTitle">The way of Web Architecture</h3>
+        <p class="cover-siteDesc">一个关注Web架构技术的IT博客</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/yaosine" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Home</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/PHP" data-name="PHP">PHP</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Linux" data-name="Linux">Linux</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MySQL" data-name="MySQL">MySQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Queue" data-name="Queue">Queue</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/ES" data-name="ES">ES</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/GO" data-name="GO">GO</a>
+                </li>
+            
+        
+        <script>
+(function (window) {
+    window.INSIGHT_CONFIG = {
+        ROOT_URL: '/',
+        CONTENT_URL: '',
+    };
+})(window);
+</script>
+<!--
+<li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+-->
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <!--
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="" target="_blank">
+                    <img width="48" src="" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="" target="_blank"></a>
+                    <span title="最后编辑于2012-12-30">2012-12-30</span>
+                </p>
+                <p></p>
+            </div>
+            -->
+            <h2 class="post-title">PHP内核分析</h2>
+            <div class="post-meta">
+                本文发布于：2012-12-30，总共3095个字，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2 id="1、PHP是什么？"><a href="#1、PHP是什么？" class="headerlink" title="1、PHP是什么？"></a>1、PHP是什么？</h2><p>PHP指的是我们从外面看到的一套完整的系统。这听起来有点糊涂，但其实并不复杂（PHP4 内部结构图）。从功能上来分：我们可以分为三部分：</p>
+<ul>
+<li>1、 解释器部分(Zend 以引擎)，负责对输入代码的分析、翻译和执行；</li>
+<li>2、 功能性部分(PHP功能函数以及扩展)，负责具体实现语言的各种功能（比如它的函数等等）；</li>
+<li>3、 接口部分(SAPI)，负责同 WEB 服务器的会话等功能。</li>
+</ul>
+<p>Zend包括了第一部分的全部和第二部分的局部，PHP内核 包括了第二部分的局部和第三部分的全部。他们合起来称之为 PHP 包。Zend 构成了语言的核心，同时也包含了一些最基本的 PHP 预定义函数的实现。PHP 包（内核）则包含了所有创造出语言本身各种显著特性的模块。</p>
+<p>PHP内部结构图：<br><img src="http://my.csdn.net/uploads/201203/26/1332750357_5412.png" alt="">                </p>
+<p>从内容模块上来分：我们可以分为四层体系结构：</p>
+<ul>
+<li><p>1）Zend引擎：Zend整体用纯c实现，是php的内核部分，它将php代码翻译（词法、语法解析等一系列编译过程）为可执行opcode的处理并实现相应的处理方法、实现了基本的数据结构（如hashtable、oo）、内存分配及管理、提供了相应的api方法供外部调用，是一切的核心，所有的外围功能均围绕zend实现。</p>
+</li>
+<li><p>2）Extensions扩展：围绕着zend引擎，extensions通过组件式的方式提供各种基础服务，我们常见的各种内置函数（如array系列）、标准库等都是通过extension来实现，用户也可以根据需要实现自己的extension以达到功能扩展、性能优化等目的（如贴吧正在使用的php中间层、富文本解析就是extension的典型应用）。</p>
+</li>
+<li><p>3）Sapi ：Sapi全称是Server Application Programming Interface，也就是服务端应用编程接口，sapi通过一系列钩子函数，使得php可以和外围交互数据，这是php非常优雅和成功的一个设计，通过sapi成功的将php本身和上层应用解耦隔离，php可以不再考虑如何针对不同应用进行兼容，而应用本身也可以针对自己的特点实现不同的处理方式。</p>
+</li>
+<li><p>4）上层应用： 这就是我们平时编写的php程序，通过不同的sapi方式得到各种各样的应用模式，如通过webserver实现web应用、在命令行下以脚本方式运行等等。</p>
+</li>
+</ul>
+<p>php结构图：</p>
+<p><img src="http://my.csdn.net/uploads/201203/26/1332756363_9015.jpg" alt=""></p>
+<p>架构思想：</p>
+<p>引擎(Zend)+扩展(ext)的模式:降低内部耦合</p>
+<p>中间层(sapi):web server和php的通信接口， 隔绝web server和php。</p>
+<p>举个例子：</p>
+<p>如果php是一辆车，那么：</p>
+<p>车的框架就是php本身，即是我们外面看到一套完整系统</p>
+<p>Zend是车的引擎（发动机）</p>
+<p>Ext下面的各种组件就是车的轮子</p>
+<p>Sapi可以看做是公路，车可以跑在不同类型的公路上</p>
+<p>而一次php程序的执行就是汽车跑在公路上。</p>
+<p>因此，我们需要：性能优异的引擎+合适的车轮+正确的跑道</p>
+<h2 id="2、sapi"><a href="#2、sapi" class="headerlink" title="2、sapi"></a>2、sapi</h2><p>如前所述，sapi通过通过一系列的接口，使得外部应用可以和php交换数据并可以根据不同应用特点实现特定的处理方法，我们常见的一些sapi有：</p>
+<ul>
+<li>1)、apache2handler:</li>
+</ul>
+<p>这是以apache作为webserver，采用mod_php模式运行时候的处理方式，也是现在应用最广泛的一种。</p>
+<ul>
+<li>2)、cgi ：</li>
+</ul>
+<p>这是webserver和php直接的另一种交互方式，也就是大名鼎鼎的fastcgi协议，在最近今年fastcgi+php得到越来越多的应用，也是异步webserver所唯一支持的方式。</p>
+<ul>
+<li>3)、cli</li>
+</ul>
+<p><strong>主要函数：</strong></p>
+<ul>
+<li>startup：php被调用时初始化操作，比如cgi模式，在startup的时候会加载所有的extension并执行模块初始化工作。</li>
+<li>shutdown：php关闭时收尾工作</li>
+<li>activate：请求初始化</li>
+<li>dectivate：请求结束时收尾工作</li>
+<li>ub_write：指定数据输出方式，比如apache2handler方式，由于php作为apache的一个so存在，因此其输出也就是调                          用apache的ap_write函数，而在cgi模式下，会系统调用write。</li>
+<li>sapi_error：错误处理函数</li>
+<li>read_post：读取post数据</li>
+<li>register_server_variables：往$_SERVER中注册环境变量这个一般根据不同协议标准注册注册的变量。</li>
+</ul>
+<h2 id="3、php脚本的执行"><a href="#3、php脚本的执行" class="headerlink" title="3、php脚本的执行"></a>3、php脚本的执行</h2><p>SAPI处于PHP架构的上层，而真正的脚本执行是有Zend引擎来完成。</p>
+<p>目前语言分为两类：</p>
+<p> 第一类：<strong>编译型语言</strong>.如c/c++ java之类，他们的共性是运行之前必须对源代码进行编译，然后运行编译后的目标文件。</p>
+<p> 第二类语言：<strong>解释型语言</strong>：如PHP,Ruby，Python。他们需要解释器来执行这些源代码。实际上这些语言还是要经过编译环节的。只不过他们在运行的时候进行编译，为了效率，并不是每次执行的时候都会重新编译，比如PHP的各种opcode缓存扩展（如APC Xcache等）。</p>
+<blockquote>
+<p>说明：PHP从2000年发布的PHP4开始就不是解释性语言。当一个PHP脚本被执行的时候，首先PHP源代码由Zend引擎编译成名为Zend opcodes的机器代码。这些代码保存在RAM中。然后执行opcodes运行真正的脚本。因此，PHP实际上和Java，C#等语言一样是编译语言。否则，它的执行会很慢。</p>
+</blockquote>
+<p>我们来看PHP脚本是怎么被执行的。如hello.php:</p>
+<pre><code>&lt;?php  
+$str = &quot;Hello world!\n&quot;;  
+echo $str;  
+</code></pre><p>命令行执行：</p>
+<blockquote>
+<p>php hello.php</p>
+</blockquote>
+<p>输出结果显然是：</p>
+<blockquote>
+<p>Hello world!</p>
+</blockquote>
+<p>但是执行脚本的时候，PHP/Zend做了什么呢？</p>
+<h3 id="程序的执行："><a href="#程序的执行：" class="headerlink" title="程序的执行："></a>程序的执行：</h3><ul>
+<li><p>1)、传递给php程序需要的执行文件hello.php，php程序完成基本的准备工作后启动PHP及Zend引擎，加载注册的扩展模块。</p>
+</li>
+<li><p>2)、初始化完后读取脚本文件，Zend引擎对脚本进行此词法分析，语法分析，然后有Zend引擎编译成opcode码，最后执行              opcode码。</p>
+</li>
+</ul>
+<p>php代码的执行过程如下图：</p>
+<p><img src="http://my.csdn.net/uploads/201203/26/1332753641_7765.jpg" alt=""> </p>
+<p>php实现了一个典型的动态语言执行过程：拿到一段代码后，经过词法解析、语法解析等阶段后，源程序会被翻译成一个个指令(opcodes)，然后ZEND虚拟机顺次执行这些指令完成操作。PHP本身是用c实现的，因此最终调用的也都是c的函数，实际上，我们可以把php看做是一个c开发的软件。</p>
+<p>通过上面描述不难看出，php的执行的核心是翻译出来的一条一条指令，也即opcode.</p>
+<h3 id="词法分析和语法分析"><a href="#词法分析和语法分析" class="headerlink" title="词法分析和语法分析"></a>词法分析和语法分析</h3><p>解释器一般包括两部分：</p>
+<ul>
+<li>1)、读取源程序，并处理语言结构</li>
+<li>2)、处于语言结构并生成目标程序</li>
+</ul>
+<p>而Lex和Yacc可以解决第一个问题。很多编程都有Lex/Yacc作为语言的词法语法分析生成器，比如PHP,Python、Ruby已经MySql的sql语言。<br>Lex生成词法分析器。<br>Yacc语法分析生成器</p>
+<h3 id="opcode"><a href="#opcode" class="headerlink" title="opcode"></a>opcode</h3><p>PHP 构建在Zend虚拟机（Zend VM）之上的，PHP的opcode就是ZEND 虚拟机中的指令,即Opcode是php程序执行的最基本单位。</p>
+<p>参考资料：<a href="http://blog.csdn.net/hguisu/article/details/7394430" target="_blank" rel="noopener">http://blog.csdn.net/hguisu/article/details/7394430</a></p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/PHP/">PHP</a>
+            
+        </div>
+        
+    </article>
+    
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <!-- 
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            -->
+        </p>
+        <p>
+            本站采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+            <!--，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2018 -->
+        </p>
+        
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '09/20/2012',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>

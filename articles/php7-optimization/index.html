@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://yaosine.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://yaosine.github.io">
+<meta name="author" content="Yaosine">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>php7性能之道 - Web架构之路 - The way of Web Architecture</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="PHP是一种在全球范围内被广泛使用的Web开发语言，PHP7的革新也当然会给这些Web服务带来更深刻的变化">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="WA">WA</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-area-chart "></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/categories/PHP" title="PHP">
+            <i class="fa fa-product-hunt"></i>
+            <span>PHP</span>
+        </a>
+        
+        
+        <a href="/categories/MySQL" title="MySQL">
+            <i class="fa fa-maxcdn"></i>
+            <span>MySQL</span>
+        </a>
+        
+        
+        <a href="/categories/Linux" title="Linux">
+            <i class="fa fa-linux"></i>
+            <span>Linux</span>
+        </a>
+        
+        
+        <a href="/categories/Nginx" title="Nginx">
+            <i class="fa fa-server"></i>
+            <span>Nginx</span>
+        </a>
+        
+        
+        <a href="/categories/NoSQL" title="NoSQL">
+            <i class="fa fa-registered"></i>
+            <span>NoSQL</span>
+        </a>
+        
+        
+        <a href="/categories/Queue" title="Queue">
+            <i class="fa fa-quora"></i>
+            <span>Queue</span>
+        </a>
+        
+        
+        <a href="/categories/ES" title="ES">
+            <i class="fa fa-etsy"></i>
+            <span>ES</span>
+        </a>
+        
+        
+        <a href="/categories/GO" title="GO">
+            <i class="fa fa-google"></i>
+            <span>GO</span>
+        </a>
+        
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <!--<a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>-->
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">Web架构之路</h1>
+        <h3 class="cover-siteTitle">The way of Web Architecture</h3>
+        <p class="cover-siteDesc">一个关注Web架构技术的IT博客</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/yaosine" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Home</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/PHP" data-name="PHP">PHP</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Linux" data-name="Linux">Linux</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MySQL" data-name="MySQL">MySQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Queue" data-name="Queue">Queue</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/ES" data-name="ES">ES</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/GO" data-name="GO">GO</a>
+                </li>
+            
+        
+        <script>
+(function (window) {
+    window.INSIGHT_CONFIG = {
+        ROOT_URL: '/',
+        CONTENT_URL: '',
+    };
+})(window);
+</script>
+<!--
+<li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+-->
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <!--
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="" target="_blank">
+                    <img width="48" src="" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="" target="_blank"></a>
+                    <span title="最后编辑于2015-09-18">2015-09-18</span>
+                </p>
+                <p></p>
+            </div>
+            -->
+            <h2 class="post-title">PHP7性能之道</h2>
+            <div class="post-meta">
+                本文发布于：2015-09-18，总共7095个字，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>PHP已经走过了20年的历史，直到今天，PHP7都发布了RC版，据说，PHP7正式版应该会在2015年11月份左右发布。PHP7对于上一个系列的PHP5.*，可以说是一个大规模的革新，尤其是在性能方面实现跨越式的大幅提升。</p>
+<p>PHP是一种在全球范围内被广泛使用的Web开发语言，PHP7的革新也当然会给这些Web服务带来更深刻的变化。这里引用鸟哥PPT中的一个图表（82%的Web站点有使用PHP作为开发语言）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f972542573d_middle.jpg" alt=""></p>
+<p>（注：一个web站点可以会使用多种语言作为它的开发语言）</p>
+<p>我们先看看两张激动人心的性能测试结果图：</p>
+<p>Benchmark对比（图片来自于PPT）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f972f220584_middle.jpg" alt=""></p>
+<p>PHP7的性能测试结果，性能压测结果，耗时从2.991下降到1.186，大幅度下降60%。</p>
+<p>WordPress的QPS压测（图片来自于PPT）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f9735ed3e69_middle.jpg" alt=""></p>
+<p>而在WordPress项目中，PHP7对比PHP5.6，QPS提升2.77倍。</p>
+<p>看完令人激动的性能测试结果对比，我们就进入正题哈。PHP7的新增特性很多，不过，我们会更聚焦于那些主要的变化。</p>
+<h2 id="一、新增特性和改变"><a href="#一、新增特性和改变" class="headerlink" title="一、新增特性和改变"></a>一、新增特性和改变</h2><h3 id="1-nbsp-标量类型和返回类型声明"><a href="#1-nbsp-标量类型和返回类型声明" class="headerlink" title="1.&nbsp;标量类型和返回类型声明"></a>1.&nbsp;标量类型和返回类型声明</h3><p>PHP语言一个非常重要的特点就是“弱类型”，它让PHP的程序变得非常容易编写，新手接触PHP能够快速上手，不过，它也伴随着一些争议。支持变量类型的定义，可以说是革新性质的变化，PHP开始以可选的方式支持类型定义。除此之外，还引入了一个开关指令declare(strict_type=1);，当这个指令一旦开启，将会强制当前文件下的程序遵循严格的函数传参类型和返回类型。</p>
+<p>例如一个add函数加上类型定义，可以写成这样：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f973a6b4c13_middle.jpg" alt=""></p>
+<p>如果配合强制类型开关指令，则可以变为这样：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f973ad30dc9_middle.jpg" alt=""></p>
+<p>如果不开启strict_type，PHP将会尝试帮你转换成要求的类型，而开启之后，会改变PHP就不再做类型转换，类型不匹配就会抛出错误。对于喜欢“强类型”语言的同学来说，这是一大福音。</p>
+<h3 id="2-nbsp-更多的Error变为可捕获的Exception"><a href="#2-nbsp-更多的Error变为可捕获的Exception" class="headerlink" title="2.&nbsp;更多的Error变为可捕获的Exception"></a>2.&nbsp;更多的Error变为可捕获的Exception</h3><p>PHP7实现了一个全局的throwable接口，原来的Exception和部分Error都实现了这个接口（interface），&nbsp;以接口的方式定义了异常的继承结构。于是，PHP7中更多的Error变为可捕获的Exception返回给开发者，如果不进行捕获则为Error，如果捕获就变为一个可在程序内处理的Exception。这些可被捕获的Error通常都是不会对程序造成致命伤害的Error，例如函数不存。PHP7进一步方便开发者处理，让开发者对程序的掌控能力更强。因为在默认情况下，Error会直接导致程序中断，而PHP7则提供捕获并且处理的能力，让程序继续执行下去，为程序员提供更灵活的选择。</p>
+<p>例如，执行一个我们不确定是否存在的函数，PHP5兼容的做法是在函数被调用之前追加的判断function_exist，而PHP7则支持捕获Exception的处理方式。</p>
+<p>如下图中的例子（截图来源于PPT内）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f9744c384f1_middle.jpg" alt=""></p>
+<h3 id="3-nbsp-AST（Abstract-nbsp-Syntax-nbsp-Tree，抽象语法树）"><a href="#3-nbsp-AST（Abstract-nbsp-Syntax-nbsp-Tree，抽象语法树）" class="headerlink" title="3.&nbsp;AST（Abstract&nbsp;Syntax&nbsp;Tree，抽象语法树）"></a>3.&nbsp;AST（Abstract&nbsp;Syntax&nbsp;Tree，抽象语法树）</h3><p>AST在PHP编译过程作为一个中间件的角色，替换原来直接从解释器吐出opcode的方式，让解释器（parser）和编译器（compliler）解耦，可以减少一些Hack代码，同时，让实现更容易理解和可维护。</p>
+<p>PHP 5：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f97415dbd91_middle.jpg" alt=""></p>
+<p>PHP 7：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f97438257c5_middle.jpg" alt=""></p>
+<p>更多AST信息：<a href="https://wiki.php.net/rfc/abstract_syntax_tree" target="_blank" rel="noopener">https://wiki.php.net/rfc/abstract_syntax_tree</a></p>
+<h3 id="4-nbsp-Native-nbsp-TLS（Native-nbsp-Thread-nbsp-local-nbsp-storage，原生线程本地存储）"><a href="#4-nbsp-Native-nbsp-TLS（Native-nbsp-Thread-nbsp-local-nbsp-storage，原生线程本地存储）" class="headerlink" title="4.&nbsp;Native&nbsp;TLS（Native&nbsp;Thread&nbsp;local&nbsp;storage，原生线程本地存储）"></a>4.&nbsp;Native&nbsp;TLS（Native&nbsp;Thread&nbsp;local&nbsp;storage，原生线程本地存储）</h3><p>PHP在多线程模式下（例如，Web服务器Apache的woker和event模式，就是多线程），需要解决“线程安全”（TS，Thread&nbsp;Safe）的问题，因为线程是共享进程的内存空间的，所以每个线程本身需要通过某种方式，构建私有的空间来保存自己的私有数据，避免和其他线程相互污染。而PHP5采用的方式，就是维护一个全局大数组，为每一个线程分配一份独立的存储空间，线程通过各自拥有的key值来访问这个全局数据组。</p>
+<p>而这个独有的key值在PHP5中需要传递给每一个需要用到全局变量的函数，PHP7认为这种传递的方式并不友好，并且存在一些问题。因而，尝试采用一个全局的线程特定变量来保存这个key值。</p>
+<p>相关的Native&nbsp;TLS问题：<a href="https://wiki.php.net/rfc/native-tls" target="_blank" rel="noopener">https://wiki.php.net/rfc/native-tls</a></p>
+<h3 id="5-nbsp-其他新特性"><a href="#5-nbsp-其他新特性" class="headerlink" title="5.&nbsp;其他新特性"></a>5.&nbsp;其他新特性</h3><p>PHP 7新特性和变化不少，我们这里并不全部展开来细说哈。</p>
+<ol>
+<li><span style="background-color: initial;">Int64支持，统一不同平台下的整型长度，字符串和文件上传都支持大于2GB。</span></li>
+<li><span style="background-color: initial;">统一变量语法（Uniform&nbsp;variable&nbsp;syntax）。</span></li>
+<li><span style="background-color: initial;">foreach表现行为一致（Consistently&nbsp;foreach&nbsp;behaviors）</span></li>
+<li><span style="background-color: initial;">新的操作符&nbsp;&lt;=&gt;,&nbsp;??</span></li>
+<li><span style="background-color: initial;">Unicode字符格式支持（\u{xxxxx}）</span></li>
+<li><span style="background-color: initial;">匿名类支持（Anonymous&nbsp;Class）</span></li>
+</ol>
+<p>……</p>
+<h2 id="二、跨越式的性能突破：全速前进"><a href="#二、跨越式的性能突破：全速前进" class="headerlink" title="二、跨越式的性能突破：全速前进"></a>二、跨越式的性能突破：全速前进</h2><h3 id="1-nbsp-JIT与性能"><a href="#1-nbsp-JIT与性能" class="headerlink" title="1. &nbsp;JIT与性能"></a>1. &nbsp;JIT与性能</h3><p>Just&nbsp;In&nbsp;Time（即时编译）是一种软件优化技术，指在运行时才会去编译字节码为机器码。从直觉出发，我们都很容易认为，机器码是计算机能够直接识别和执行的，比起Zend读取opcode逐条执行效率会更高。其中，HHVM（HipHop&nbsp;Virtual&nbsp;Machine，HHVM是一个Facebook开源的PHP虚拟机）就采用JIT，让他们的PHP性能测试提升了一个数量级，放出一个令人震惊的测试结果，也让我们直观地认为JIT是一项点石成金的强大技术。</p>
+<p>而实际上，在2013年的时候，鸟哥和Dmitry（PHP语言内核开发者之一）就曾经在PHP5.5的版本上做过一个JIT的尝试（并没有发布）。PHP5.5的原来的执行流程，是将PHP代码通过词法和语法分析，编译成opcode字节码（格式和汇编有点像），然后，Zend引擎读取这些opcode指令，逐条解析执行。</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f9745f2c16e_middle.jpg" alt=""></p>
+<p>而他们在opcode环节后引入了类型推断（TypeInf），然后通过JIT生成ByteCodes，然后再执行。</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f974733df94_middle.jpg" alt=""></p>
+<p>于是，在benchmark（测试程序）中得到令人兴奋的结果，实现JIT后性能比PHP5.5提升了8倍。然而，当他们把这个优化放入到实际的项目WordPress（一个开源博客项目）中，却几乎看不见性能的提升，得到了一个令人费解的测试结果。</p>
+<p>于是，他们使用Linux下的profile类型工具，对程序执行进行CPU耗时占用分析。</p>
+<p>执行100次WordPress的CPU消耗的分布（截图来自PPT）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f974b3444df_middle.jpg" alt=""></p>
+<p>注解：</p>
+<p>21%CPU时间花费在内存管理。</p>
+<p>12%CPU时间花费在hash&nbsp;table操作，主要是PHP数组的增删改查。</p>
+<p>30%CPU时间花费在内置函数，例如strlen。</p>
+<p>25%CPU时间花费在VM（Zend引擎）。</p>
+<p>经过分析之后，得到了两个结论：</p>
+<p><strong>（1）JIT生成的ByteCodes如果太大，会引起CPU缓存命中率下降（CPU&nbsp;Cache&nbsp;Miss）</strong></p>
+<p>在PHP5.5的代码里，因为并没有明显类型定义，只能靠类型推断。尽可能将可以推断出来的变量类型，定义出来，然后，结合类型推断，将非该类型的分支代码去掉，生成直接可执行的机器码。然而，类型推断不能推断出全部类型，在WordPress中，能够推断出来的类型信息只有不到30%，能够减少的分支代码有限。导致JIT以后，直接生成机器码，生成的ByteCodes太大，最终引起CPU缓存命中大幅度下降（CPU&nbsp;Cache&nbsp;Miss）。</p>
+<p>CPU缓存命中是指，CPU在读取并执行指令的过程中，如果需要的数据在CPU一级缓存（L1）中读取不到，就不得不往下继续寻找，一直到二级缓存（L2）和三级缓存（L3），最终会尝试到内存区域里寻找所需要的指令数据，而内存和CPU缓存之间的读取耗时差距可以达到100倍级别。所以，ByteCodes如果过大，执行指令数量过多，导致多级缓存无法容纳如此之多的数据，部分指令将不得不被存放到内存区域。</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f974e300ad2_middle.jpg" alt=""></p>
+<p>CPU的各级缓存的大小也是有限的，下图是Intel&nbsp;i7&nbsp;920的配置信息：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f9753b9fc79_middle.jpg" alt=""></p>
+<p>因此，CPU缓存命中率下降会带来严重的耗时增加，另一方面，JIT带来的性能提升，也被它所抵消掉了。</p>
+<p>通过JIT，可以降低VM的开销，同时，通过指令优化，可以间接降低内存管理的开发，因为可以减少内存分配的次数。然而，对于真实的WordPress项目来说，CPU耗时只有25%在VM上，主要的问题和瓶颈实际上并不在VM上。因此，JIT的优化计划，最后没有被列入该版本的PHP7特性中。不过，它很可能会在更后面的版本中实现，这点也非常值得我们期待哈。</p>
+<p><strong>（2）JIT性能的提升效果取决于项目的实际瓶颈</strong></p>
+<p>JIT在benchmark中有大幅度的提升，是因为代码量比较少，最终生成的ByteCodes也比较小，同时主要的开销是在VM中。而应用在WordPress实际项目中并没有明显的性能提升，原因WordPress的代码量要比benchmark大得多，虽然JIT降低了VM的开销，但是因为ByteCodes太大而又引起CPU缓存命中下降和额外的内存开销，最终变成没有提升。</p>
+<p>不同类型的项目会有不同的CPU开销比例，也会得到不同的结果，脱离实际项目的性能测试，并不具有很好的代表性。</p>
+<h3 id="2-nbsp-Zval的改变"><a href="#2-nbsp-Zval的改变" class="headerlink" title="2.&nbsp;Zval的改变"></a><span>2.&nbsp;</span>Zval的改变</h3><p>PHP的各种类型的变量，其实，真正存储的载体就是Zval，它特点是海纳百川，有容乃大。从本质上看，它是C语言实现的一个结构体（struct）。对于写PHP的同学，可以将它粗略理解为是一个类似array数组的东西。</p>
+<p>PHP5的Zval，内存占据24个字节（截图来自PPT）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f975a1b4341_middle.jpg" alt=""></p>
+<p>PHP7的Zval，内存占据16个字节（截图来自PPT）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f975baa0ecc_middle.jpg" alt=""></p>
+<p>Zval从24个字节下降到16个字节，为什么会下降呢，这里需要补一点点的C语言基础，辅助不熟悉C的同学理解。struct和union（联合体）有点不同，Struct的每一个成员变量要各自占据一块独立的内存空间，而union里的成员变量是共用一块内存空间（也就是说修改其中一个成员变量，公有空间就被修改了，其他成员变量的记录也就没有了）。因此，虽然成员变量看起来多了不少，但是实际占据的内存空间却下降了。</p>
+<p>除此之外，还有被明显改变的特性，部分简单类型不再使用引用。</p>
+<p>Zval结构图（来源于PPT中）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f975d39c569_middle.jpg" alt=""></p>
+<p>图中Zval的由2个64bits（1字节=8bit，bit是“位”）组成，如果变量类型是long、bealoon这些长度不超过64bit的，则直接存储到value中，就没有下面的引用了。当变量类型是array、objec、string等超过64bit的，value存储的就是一个指针，指向真实的存储结构地址。</p>
+<p>对于简单的变量类型来说，Zval的存储变得非常简单和高效。</p>
+<p>不需要引用的类型：NULL、Boolean、Long、Double</p>
+<p>需要引用的类型：String、Array、Object、Resource、Reference</p>
+<h3 id="3-nbsp-内部类型zend-string"><a href="#3-nbsp-内部类型zend-string" class="headerlink" title="3.&nbsp;内部类型zend_string"></a><span>3.&nbsp;</span>内部类型zend_string</h3><p>Zend_string是实际存储字符串的结构体，实际的内容会存储在val（char，字符型）中，而val是一个char数组，长度为1（方便成员变量占位）。</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f975e8e27b2_middle.jpg" alt=""></p>
+<p>结构体最后一个成员变量采用char数组，而不是使用char*，这里有一个小优化技巧，可以降低CPU的cache&nbsp;miss。</p>
+<p>如果使用char数组，当malloc申请上述结构体内存，是申请在同一片区域的，通常是长度是sizeof(_zend_string)&nbsp;+&nbsp;实际char存储空间。但是，如果使用char*，那个这个位置存储的只是一个指针，真实的存储又在另外一片独立的内存区域内。</p>
+<p>使用char[1&gt;和char*的内存分配对比：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f975fd6ac75_middle.jpg" alt=""></p>
+<p>从逻辑实现的角度来看，两者其实也没有多大区别，效果很类似。而实际上，当这些内存块被载入到CPU的中，就显得非常不一样。前者因为是连续分配在一起的同一块内存，在CPU读取时，通常都可以一同获得（因为会在同一级缓存中）。而后者，因为是两块内存的数据，CPU读取第一块内存的时候，很可能第二块内存数据不在同一级缓存中，使CPU不得不往L2（二级缓存）以下寻找，甚至到内存区域查到想要的第二块内存数据。这里就会引起CPU&nbsp;Cache&nbsp;Miss，而两者的耗时最高可以相差100倍。</p>
+<p>另外，在字符串复制的时候，采用引用赋值，zend_string可以避免的内存拷贝。</p>
+<h3 id="4-nbsp-PHP数组的变化（HashTable和Zend-nbsp-Array）"><a href="#4-nbsp-PHP数组的变化（HashTable和Zend-nbsp-Array）" class="headerlink" title="4.&nbsp;PHP数组的变化（HashTable和Zend&nbsp;Array）"></a><span>4.&nbsp;</span>PHP数组的变化（HashTable和Zend&nbsp;Array）</h3><p>在编写PHP程序过程中，使用最频繁的类型莫过于数组，PHP5的数组采用HashTable实现。如果用比较粗略的概括方式来说，它算是一个支持双向链表的HashTable，不仅支持通过数组的key来做hash映射访问元素，也能通过foreach以访问双向链表的方式遍历数组元素。</p>
+<p>PHP5的HashTable（截图来自于PPT）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f97611413f2_middle.jpg" alt=""></p>
+<p>这个图看起来很复杂，各种指针跳来跳去，当我们通过key值访问一个元素内容的时候，有时需要3次的指针跳跃才能找对需要的内容。而最重要的一点，就在于这些数组元素存储，都是分散在各个不同的内存区域的。同理可得，在CPU读取的时候，因为它们就很可能不在同一级缓存中，会导致CPU不得不到下级缓存甚至内存区域查找，也就是引起CPU缓存命中下降，进而增加更多的耗时。</p>
+<p>PHP7的Zend&nbsp;Array（截图来源于PPT）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f976e66c0e6_middle.jpg" alt=""></p>
+<p>新版本的数组结构，非常简洁，让人眼前一亮。最大的特点是，整块的数组元素和hash映射表全部连接在一起，被分配在同一块内存内。如果是遍历一个整型的简单类型数组，效率会非常快，因为，数组元素（Bucket）本身是连续分配在同一块内存里，并且，数组元素的zval会把整型元素存储在内部，也不再有指针外链，全部数据都存储在当前内存区域内。当然，最重要的是，它能够避免CPU&nbsp;Cache&nbsp;Miss（CPU缓存命中率下降）。</p>
+<p>Zend&nbsp;Array的变化：</p>
+<ol>
+<li><span style="background-color: initial;">数组的value默认为zval。</span></li>
+<li><span style="background-color: initial;">HashTable的大小从72下降到56字节，减少22%。</span></li>
+<li><span style="background-color: initial;">Buckets的大小从72下降到32字节，减少50%。</span></li>
+<li><span style="background-color: initial;">数组元素的Buckets的内存空间是一同分配的。</span></li>
+<li><span style="background-color: initial;">数组元素的key（Bucket.key）指向zend_string。</span></li>
+<li><span style="background-color: initial;">数组元素的value被嵌入到Bucket中。</span></li>
+<li><span style="background-color: initial;">降低CPU&nbsp;Cache&nbsp;Miss。</span></li>
+</ol>
+<h3 id="5-nbsp-函数调用机制（Function-nbsp-Calling-nbsp-Convention）"><a href="#5-nbsp-函数调用机制（Function-nbsp-Calling-nbsp-Convention）" class="headerlink" title="5.&nbsp;函数调用机制（Function&nbsp;Calling&nbsp;Convention）"></a><span>5.&nbsp;</span>函数调用机制（Function&nbsp;Calling&nbsp;Convention）</h3><p>PHP7改进了函数的调用机制，通过优化参数传递的环节，减少了一些指令，提高执行效率。</p>
+<p>PHP5的函数调用机制（截图来自于PPT）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f9770a046dc_middle.jpg" alt=""></p>
+<p>图中，在vm栈中的指令send_val和recv参数的指令是相同，PHP7通过减少这两条重复，来达到对函数调用机制的底层优化。</p>
+<p>PHP7的函数调用机制（截图来自于PPT）：</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f9772eab3f7_middle.jpg" alt=""></p>
+<h3 id="6-nbsp-通过宏定义和内联函数（inline），让编译器提前完成部分工作"><a href="#6-nbsp-通过宏定义和内联函数（inline），让编译器提前完成部分工作" class="headerlink" title="6.&nbsp;通过宏定义和内联函数（inline），让编译器提前完成部分工作"></a><span>6.&nbsp;</span>通过宏定义和内联函数（inline），让编译器提前完成部分工作</h3><p>C语言的宏定义会被在预处理阶段（编译阶段）执行，提前将部分工作完成，无需在程序运行时分配内存，能够实现类似函数的功能，却没有函数调用的压栈、弹栈开销，效率会比较高。内联函数也类似，在预处理阶段，将程序中的函数替换为函数体，真实运行的程序执行到这里，就不会产生函数调用的开销。</p>
+<p>PHP7在这方面做了不少的优化，将不少需要在运行阶段要执行的工作，放到了编译阶段。例如参数类型的判断（Parameters&nbsp;Parsing），因为这里涉及的都是固定的字符常量，因此，可以放到到编译阶段来完成，进而提升后续的执行效率。</p>
+<p>例如下图中处理传递参数类型的方式，从左边的写法，优化为右边宏的写法。</p>
+<p><img src="http://img.ptcms.csdn.net/article/201509/16/55f9783e9047c_middle.jpg" alt=""></p>
+<h2 id="三、小结"><a href="#三、小结" class="headerlink" title="三、小结"></a>三、小结</h2><p>鸟哥的PPT里放出过一组对比数据，就是WordPress在PHP5.6执行100次会产生70亿次的CPU指令执行数目，而在PHP7中只需要25亿次，减少64.2%，这是一个令人震撼的数据。</p>
+<p>在鸟哥的整个分享中，给我最深刻的一个观点是：要注意细节，很多个细小的优化，一点点持续地积累，积少成多，最终汇聚为惊艳的成果。为山九仞，岂一日之功，我想大概也是这个道理。</p>
+<p>毫无疑问，PHP7在性能方面实现跨越式的提升，如果能够将这些成果应用在PHP的Web系统中，也许我们只需要更少的机器，就可以支撑起更高请求量的服务。PHP7正式版的发布，令人充满无限憧憬。</p>
+<p><strong>参考资料：</strong></p>
+<pre><code>http://www.laruence.com/
+http://php.net/
+http://www.csdn.net/article/2015-09-16/2825720
+</code></pre>
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/PHP/">PHP</a>
+            
+        </div>
+        
+    </article>
+    
+    
+</div>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <!-- 
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            -->
+        </p>
+        <p>
+            本站采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+            <!--，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2018 -->
+        </p>
+        
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '09/20/2012',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>

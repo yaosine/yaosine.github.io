@@ -565,6 +565,7 @@ body {
 }
 
 .page-title {
+    overflow:hidden;
     height: 45px;
     position: fixed;
     z-index: 100;

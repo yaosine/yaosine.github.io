@@ -211,12 +211,39 @@
             -->
             <h2 class="post-title">开启opcache为PHP性能加速</h2>
             <div class="post-meta">
-                本文发布于：2014-09-12，总共2822个字，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
+                本文发布于：2014-09-12，总共4042个字，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
-            <p>PHP5.5+版本以上的，可以使用PHP自带的opcache开启性能加速（默认是关闭的）。对于PHP5.5以下版本的，需要使用APC加速，这里不说明，可以自行上网搜索PHP APC加速的方法。</p>
-<p>PHP开启opcache方法</p>
+            <h2 id="一、APC"><a href="#一、APC" class="headerlink" title="一、APC"></a>一、APC</h2><p>我们知道，PHP的运行阶段分成三个阶段：</p>
+<blockquote>
+<p>Parse。语法分析阶段。<br>Compile。编译产出opcode中间码。<br>Execute。运行，动态运行进行输出<br><img src="http://my.csdn.net/uploads/201203/27/1332827626_4984.jpg" alt=""></p>
+</blockquote>
+<p>由于PHP是个解释型语言执行的时候先得把程序读进来，然后由Zend引擎编译成opcode。最后Zend虚拟机顺次执行这些opcode（指令）完成操作。因此我们可以把这个Opcode缓存起来，下次就能避免重新编译了。</p>
+<p>APC: Alternative PHP Cache，是一个开放自由的PHP opcode缓存。它的目标是提供一个自由、 开放，和健全的框架用于缓存和优化PHP的中间代码。<br>PHP APC提供两种缓存功能，即缓存Opcode(目标文件)，我们称之为apc_compiler_cache。</p>
+<blockquote>
+<p>APC缓存</p>
+</blockquote>
+<p>APC的缓存分两部分:系统缓存和用户数据缓存.</p>
+<p>-系统缓存:<br>是自动使用的,是指APC把PHP文件源码的编译结果缓存起来,然后在再次调用时先对比时间标记。如果未过期,则使用缓存代码运行。默认缓存 3600s(一小时).但是这样仍会浪费大量CPU时间.因此可以在php.ini中设置system缓存为永不过期(apc.ttl=0).不过如果这样设置,改运php代码后需要restart一下您的web服务器(比如apache…).目前对APC的性能测试一般指的是这一层cache;</p>
+<p>-用户数据缓存:<br>由用户在编写php代码时用apc_store和apc_fetch函数操作读取、写入的.如果量不大的话建议可以使用一下.如果量大,建议使用memcache会更好.<br>如果要享受APC带来的缓存大文件上传进度的特性,需要在php.ini中将apc.rfc1867设为1,并且在表单中加一个隐藏域APC_UPLOAD_PROGRESS,这个域的值可以随机生成一个hash,以确何唯一.具体例子请参见前面给出的链接.</p>
+<blockquote>
+<p>测试效率</p>
+</blockquote>
+<pre><code>从Ethna框架来测试：
+第一次执行：
+Time:260.53491973877ms
+memory:6.2379684448242MB
+第二次执行：
+Time:199.43404197693ms
+memory:1.1883926391602MB
+性能提高了30%。
+</code></pre><blockquote>
+<p>apc与memcache对比</p>
+</blockquote>
+<p>1，使用apc_fetch获取数据，每次大约1-2微秒。 （10万次170ms）<br>2，使用Memcache::get通过localhost获取本服务器的数据，每次大概41微秒。 （10万次4160ms）<br>3，使用Memcache::get通过本机IP地址获取本服务器的数据，每次大概42微秒。  （10万次4268ms）<br>4，使用Memcache::get通过IP地址获取同网段（千兆以太网）其他机器的数据，每次大概110微秒。10万次11268ms）<br>5，使用Redis::get通过IP地址获取同网段（千兆以太网）其他机器的数据，每次大概220微秒。（10万次21700ms）</p>
+<h2 id="二、OPcache"><a href="#二、OPcache" class="headerlink" title="二、OPcache"></a>二、OPcache</h2><p>对于PHP5.5以下版本的，需要使用APC加速，到了PHP5.5+版本以上的，可以使用PHP自带的opcache开启性能加速（默认是关闭的）。</p>
+<p>PHP开启opcache方法:</p>
 <blockquote>
 <p>1、打开php.ini文件</p>
 <p>2、找到：[opcache]，设置为：</p>
@@ -239,9 +266,9 @@ opcache.revalidate_freq=1
 ; 打开快速关闭, 打开这个在PHP Request Shutdown的时候回收内存的速度会提高
 opcache.fast_shutdown=1
 </code></pre><blockquote>
-<p>3、重启apache即可。</p>
+<p>3、重启apache</p>
 </blockquote>
-<p>测试<br>配置完成后，可以使用如下代码查询opcache：</p>
+<p>测试: 配置完成后，可以使用如下代码查询opcache：</p>
 <pre><code>&lt;?php
     phpinfo();
 ?&gt;
@@ -344,7 +371,7 @@ opcache.fast_shutdown=1
 
 ; 防止共享内存在脚本执行期间被意外写入, 仅用于内部调试.
 ;opcache.protect_memory=0
-</code></pre><p>文章参考</p>
+</code></pre><p>文章资料：</p>
 <blockquote>
 <p>测试opcache缓存开启前后的性能差异 <a href="https://jingyan.baidu.com/article/d7130635235d4f13fcf47545.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/d7130635235d4f13fcf47545.html</a></p>
 <p>使用 OpCache 提升 PHP 5.5+ 程序性能 <a href="https://phphub.org/topics/301" target="_blank" rel="noopener">https://phphub.org/topics/301</a></p>

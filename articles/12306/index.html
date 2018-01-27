@@ -17,11 +17,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>12306抢票神器！可绕过验证码和自动刷新 - Web架构之路 - The way of Web Architecture</title>
+<title>12306抢票神器！可绕过验证码自动下单 - Web架构之路 - The way of Web Architecture</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="央视报道了黄牛党如何利用抢票神器刷票，这说明什么？说明这就是刚需！">
+<meta name="description " content="12306抢票工具，可绕过验证码、可自定义刷新频率自动下单">
 </head>
 <body>
 <div id="nav">
@@ -114,7 +114,7 @@
         <li><a href="/">Home</a></li>
         
             
-                <li class="active">
+                <li class="">
                     <a href="/categories/PHP" data-name="PHP">PHP</a>
                 </li>
             
@@ -209,14 +209,14 @@
                 <p></p>
             </div>
             -->
-            <h2 class="post-title">12306抢票神器！可绕过验证码和自动刷新</h2>
+            <h2 class="post-title">12306抢票神器！可绕过验证码自动下单</h2>
             <div class="post-meta">
                 本文发布于：2014-01-08，总共1028个字，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
             </div>
         </div>
         <div class="post-content markdown-body">
             <p><strong>12306抢票神器</strong>，项目地址： <a href="https://github.com/yaosine/12306" target="_blank" rel="noopener">https://github.com/yaosine/12306</a></p>
-<p>2014年1月8日，央视报道了黄牛党如何利用抢票神器刷票，这说明什么？说明这就是刚需！没错，每到逢年过节，12306都要面临巨大考验，尤其是春运。因为我也是其中一份，看到自己和身边的朋友总因为抢票发愁，于是找个时间来研究研究，写出了一个简单实用的抢票神器，适合放票时秒抢，因为不用填写验证码，可大大提高下单时间，已成功造福身边的非技术同事，代码如下：</p>
+<p>2014年1月8日，央视报道了黄牛党如何利用抢票神器刷票，这说明什么？说明这就是刚需！没错，每到逢年过节，12306都要面临巨大考验，尤其是春运。因为我也是其中一份，看到自己和身边的朋友总因为抢票发愁，于是找个时间来研究研究，写出了一个简单实用的抢票工具，适合放票时秒抢，因为不用填写验证码，可大大提高下单时间，已成功造福身边的非技术同事，代码如下：</p>
 <p><img src="/images/12306.jpg"></p>
 <p><strong>BUG解析</strong>：</p>
 <p>其实这个BUG很简单，12306的自动刷新功能本身就有自动刷票功能，只是时间限制在5秒一次，查看源代码发现引用了jQuery，那就好办了，咱们先把时间给改了，重新定义window.setTimeout，当时间为咱们设定时间时立即执行：</p>
@@ -246,7 +246,7 @@ refreshImg = function(a,b,c){ return true }//验证码过滤
         
         <div class="post-tags">Tags：
             
-            <a href="/tags/12306/">12306</a>
+            <a href="/tags/JS/">JS</a>
             
         </div>
         
