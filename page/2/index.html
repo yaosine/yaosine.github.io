@@ -83,7 +83,7 @@
     </nav>
 </div>
 <div class="nav-user">
-    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <!--<a class="btn-search" href="#"><i class="fa fa-search"></i></a>-->
     <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
     <!--<a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>-->
 </div>
@@ -151,7 +151,7 @@
 (function (window) {
     window.INSIGHT_CONFIG = {
         ROOT_URL: '/',
-        CONTENT_URL: '',
+        CONTENT_URL: ''
     };
 })(window);
 </script>
@@ -185,7 +185,8 @@
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
+        //CONTENT_URL: '/content.json',
+        CONTENT_URL: '',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
@@ -197,6 +198,33 @@
 <div class="main-inner">
     
     <!-- 首页默认取最最新文章集 -->
+    
+    
+<article class="post">
+    
+    <div class="post-header">
+        <div class="post-meta">
+            <a href="" target="_blank">
+                <strong></strong>
+            </a>
+            
+        </div>
+        <a class="post-title" href="/articles/php-live/" target="_blank" title="PHP生命周期">PHP生命周期</a>
+        <div class="post-meta">
+            <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
+            
+                <em>·</em>
+                <a href="https://yaosine.github.io/tags/PHP/" target="_blank">PHP</a>
+            
+        </div>
+    </div>
+    <div class="post-desc">
+        PHP两种运行模式是WEB模式、CLI模式。无论哪种模式，PHP工作原理都是一样的，作为一种SAPI运行。
+    </div>
+</article>
+
+
+
     
     
 <article class="post">

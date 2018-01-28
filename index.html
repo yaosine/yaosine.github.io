@@ -83,7 +83,7 @@
     </nav>
 </div>
 <div class="nav-user">
-    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <!--<a class="btn-search" href="#"><i class="fa fa-search"></i></a>-->
     <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
     <!--<a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>-->
 </div>
@@ -151,7 +151,7 @@
 (function (window) {
     window.INSIGHT_CONFIG = {
         ROOT_URL: '/',
-        CONTENT_URL: '',
+        CONTENT_URL: ''
     };
 })(window);
 </script>
@@ -185,7 +185,8 @@
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
-        CONTENT_URL: '/content.json',
+        //CONTENT_URL: '/content.json',
+        CONTENT_URL: '',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
@@ -430,17 +431,20 @@
             </a>
             
         </div>
-        <a class="post-title" href="/articles/linux-cmd/" target="_blank" title="Linux文件处理常用命令">Linux文件处理常用命令</a>
+        <a class="post-title" href="/articles/redis/" target="_blank" title="Why Redis?">Why Redis?</a>
         <div class="post-meta">
             <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
             
                 <em>·</em>
-                <a href="https://yaosine.github.io/tags/Linux/" target="_blank">Linux</a>
+                <a href="https://yaosine.github.io/tags/Redis/" target="_blank">Redis</a>
+            
+                <em>·</em>
+                <a href="https://yaosine.github.io/tags/NoSQL/" target="_blank">NoSQL</a>
             
         </div>
     </div>
     <div class="post-desc">
-        怎么查看access.log中哪个IP访问最多？怎么查看指定时间范围的日志?
+        为什么使用Redis？Redis数据类型应用和实现方式是什么？
     </div>
 </article>
 
@@ -457,17 +461,17 @@
             </a>
             
         </div>
-        <a class="post-title" href="/articles/php-live/" target="_blank" title="PHP生命周期">PHP生命周期</a>
+        <a class="post-title" href="/articles/linux-cmd/" target="_blank" title="Linux文件处理常用命令">Linux文件处理常用命令</a>
         <div class="post-meta">
             <a href="/tags" target="_blank"><i class="fa fa-tags"></i></a>
             
                 <em>·</em>
-                <a href="https://yaosine.github.io/tags/PHP/" target="_blank">PHP</a>
+                <a href="https://yaosine.github.io/tags/Linux/" target="_blank">Linux</a>
             
         </div>
     </div>
     <div class="post-desc">
-        PHP两种运行模式是WEB模式、CLI模式。无论哪种模式，PHP工作原理都是一样的，作为一种SAPI运行。
+        怎么查看access.log中哪个IP访问最多？怎么查看指定时间范围的日志?
     </div>
 </article>
 
