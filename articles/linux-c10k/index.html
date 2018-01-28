@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://yaosine.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://yaosine.github.io">
+<meta name="author" content="Yaosine">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>如何解决c10k问题？ - Web架构之路 - The way of Web Architecture</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="FreeBSD推出了kqueue，Linux推出了epoll，Windows推出了IOCP，这些操作系统提供的功能就是为了解决C10K问题">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="WA">WA</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-area-chart "></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/categories/PHP" title="PHP">
+            <i class="fa fa-product-hunt"></i>
+            <span>PHP</span>
+        </a>
+        
+        
+        <a href="/categories/MySQL" title="MySQL">
+            <i class="fa fa-maxcdn"></i>
+            <span>MySQL</span>
+        </a>
+        
+        
+        <a href="/categories/Linux" title="Linux">
+            <i class="fa fa-linux"></i>
+            <span>Linux</span>
+        </a>
+        
+        
+        <a href="/categories/Nginx" title="Nginx">
+            <i class="fa fa-server"></i>
+            <span>Nginx</span>
+        </a>
+        
+        
+        <a href="/categories/NoSQL" title="NoSQL">
+            <i class="fa fa-registered"></i>
+            <span>NoSQL</span>
+        </a>
+        
+        
+        <a href="/categories/Queue" title="Queue">
+            <i class="fa fa-quora"></i>
+            <span>Queue</span>
+        </a>
+        
+        
+        <a href="/categories/ES" title="ES">
+            <i class="fa fa-etsy"></i>
+            <span>ES</span>
+        </a>
+        
+        
+        <a href="/categories/GO" title="GO">
+            <i class="fa fa-google"></i>
+            <span>GO</span>
+        </a>
+        
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <!--<a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>-->
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">Web架构之路</h1>
+        <h3 class="cover-siteTitle">The way of Web Architecture</h3>
+        <p class="cover-siteDesc">一个关注Web架构技术的IT博客</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/yaosine" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Home</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/PHP" data-name="PHP">PHP</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/Linux" data-name="Linux">Linux</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MySQL" data-name="MySQL">MySQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Queue" data-name="Queue">Queue</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/ES" data-name="ES">ES</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/GO" data-name="GO">GO</a>
+                </li>
+            
+        
+        <script>
+(function (window) {
+    window.INSIGHT_CONFIG = {
+        ROOT_URL: '/',
+        CONTENT_URL: '',
+    };
+})(window);
+</script>
+<!--
+<li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+-->
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <!--
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="" target="_blank">
+                    <img width="48" src="" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="" target="_blank"></a>
+                    <span title="最后编辑于2014-10-26">2014-10-26</span>
+                </p>
+                <p></p>
+            </div>
+            -->
+            <h2 class="post-title">如何解决C10K问题？</h2>
+            <div class="post-meta">
+                本文发布于：2014-10-26，总共2653个字<!--，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴-->
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2 id="C10K的由来"><a href="#C10K的由来" class="headerlink" title="C10K的由来"></a>C10K的由来</h2><p>互联网的基础就是网络通信，早期的互联网可以说是一个小群体的集合。互联网还不够普及，用户也不多。一台服务器同时在线100个用户估计在当时已经算是大型应用了。所以并不存在什么C10K的难题。互联网的爆发期应该是在www网站，浏览器，雅虎出现后。最早的互联网称之为Web1.0，互联网大部分的使用场景是下载一个Html页面，用户在浏览器中查看网页上的信息。这个时期也不存在C10K问题。</p>
+<p>Web2.0时代到来后就不同了，1方面是普及率大大提高了，用户群体几何倍增长。2是互联网不再是单纯的浏览万维网网页，逐渐开始进行交互，而且应用程序的逻辑也变的更复杂，从简单的表单提交，到即时通信和在线实时互动。C10K的问题才体现出来了。每一个用户都必须与服务器保持TCP连接才能进行实时的数据交互。Facebook这样的网站同一时间的并发TCP连接可能会过亿。</p>
+<pre><code>腾讯QQ也是有C10K问题的，只不过他们是用了UDP这种原始的包交换协议来实现的，绕开了这个难题。当然过程肯定是痛苦的。如果当时有epoll技术，他们肯定会用TCP。后来的手机QQ，微信都采用TCP协议。
+</code></pre><p>这时候问题就来了，最初的服务器都是基于进程/线程模型的，新到来一个TCP连接，就需要分配1个进程（或者线程）。而进程又是操作系统最昂贵的资源，一台机器无法创建很多进程。如果是C10K就要创建1万个进程，那么操作系统是无法承受的。如果是采用分布式系统，维持1亿用户在线需要10万台服务器，成本巨大，也只有Facebook，Google，雅虎才有财力购买如此多的服务器。这就是C10K问题的本质。</p>
+<pre><code>实际上当时也有异步模式，如：select/poll模型，这些技术都有一定的缺点，如selelct最大不能超过1024，poll没有限制，但每次收到数据需要遍历每一个连接查看哪个连接有数据请求。
+</code></pre><h2 id="Epoll异步非阻塞"><a href="#Epoll异步非阻塞" class="headerlink" title="Epoll异步非阻塞"></a>Epoll异步非阻塞</h2><p>既然有了C10K问题，程序员们就开始行动去解决它。于是FreeBSD推出了kqueue，Linux推出了epoll，Windows推出了IOCP。这些操作系统提供的功能就是为了解决C10K问题。因为Linux是互联网企业中使用率最高的操作系统，Epoll就成为C10K killer、高并发、高性能、异步非阻塞这些技术的代名词了。</p>
+<p>epoll技术的编程模型就是异步非阻塞回调，也可以叫做Reactor，事件驱动，事件轮循（EventLoop）。Epoll就是为了解决C10K问题而生。使用Epoll技术，使得小公司也可以玩高并发。不需要购买很多服务器，有几台服务器就可以服务大量用户。Nginx，libevent，node.js这些就是Epoll时代的产物。</p>
+<p><strong>C100K，C1M，C10M，C100M …</strong></p>
+<p>C10K问题解决后，程序员又提出了更高的挑战，也就是最近在火热争论的C100K，C1M等。Epoll既然能解决C10K，解决什么C100K，C1M也是可以的。只不过这个已经没有意义了。一个公司有1亿用户难道他买不起1万台服务器嘛。WhatsApp有2亿用户，卖了150亿美元。1万台服务器最多花费5000万美元。</p>
+<pre><code>看到阿里技术保障部的人也在谈C10K话题，我要补充一下，搞路由器、交换机、网关、防火墙之类基础网络设备的人，就不要参与C10K话题了。我们说的是应用层程序。
+</code></pre><h2 id="协程，coroutine"><a href="#协程，coroutine" class="headerlink" title="协程，coroutine"></a>协程，coroutine</h2><p>当程序员还沉浸在解决C10K问题带来的成就感时，一个新的问题被抛出了。异步嵌套回调太TM难写了。尤其是Node.js层层回调，缩进了几十层，要把程序员逼疯了。于是一个新的技术被提出来了，那就是协程（coroutine）。这个技术本质上也是异步非阻塞技术，它是将事件回调进行了包装，让程序员看不到里面的事件循环。程序员就像写阻塞代码一样简单。比如调用 client-&gt;recv() 等待接收数据时，就像阻塞代码一样写。实际上是底层库在执行recv时悄悄保存了一个状态，比如代码行数，局部变量的值。然后就跳回到EventLoop中了。什么时候真的数据到来时，它再把刚才保存的代码行数，局部变量值取出来，又开始继续执行。</p>
+<p>这个就像时间禁止的游戏一样，国王对巫师说“我必须马上得到宝物，不然就砍了你的脑袋”，巫师念了一句时间停止的咒语，直到过了1年后勇士们才把宝物送来。这时候巫师解开咒语，把宝物交给国王。这里国王就可以理解成协程，他根本没感觉到时间停止，在他停止到醒来期间发生了什么他不知道，也不关心。</p>
+<p>这就是协程的本质。协程是异步非阻塞的另外一种展现形式。Golang，Erlang，Lua协程都是这个模型。</p>
+<h2 id="同步阻塞"><a href="#同步阻塞" class="headerlink" title="同步阻塞"></a>同步阻塞</h2><p>再回到同步阻塞这个话题，不知道大家看完协程是否感觉得到，实际上协程和同步阻塞是一样的。答案是的。所以协程也叫做用户态进/用户态线程。区别就在于进程/线程是操作系统充当了EventLoop调度，而协程是自己用Epoll进行调度。</p>
+<p>协程的优点是它比系统线程开销小，缺点是如果其中一个协程中有密集计算，其他的协程就不运行了。操作系统进程的缺点是开销大，优点是无论代码怎么写，所有进程都可以并发运行。</p>
+<pre><code>Erlang解决了协程密集计算的问题，它基于自行开发VM，并不执行机器码。即使存在密集计算的场景，VM发现某个协程执行时间过长，也可以进行中止切换。Golang由于是直接执行机器码的，所以无法解决此问题。所以Golang要求用户必须在密集计算的代码中，自行Yield。
+</code></pre><p>实际上同步阻塞程序的性能并不差，它的效率很高，不会浪费资源。当进程发生阻塞后，操作系统会将它挂起，不会分配CPU。直到数据到达才会分配CPU。多进程只是开多了之后副作用太大，因为进程多了互相切换有开销。所以如果一个服务器程序只有1000左右的并发连接，同步阻塞模式是最好的。</p>
+<p><strong>异步回调和协程哪个性能好</strong></p>
+<p>协程虽然是用户态调度，实际上还是需要调度的，既然调度就会存在上下文切换。所以协程虽然比操作系统进程性能要好，但总还是有额外消耗的。而异步回调是没有切换开销的，它等同于顺序执行代码。所以异步回调程序的性能是要优于协程模型的。</p>
+<pre><code>这里是指Nginx这种多进程异步非阻塞程序。Node.js/Redis此类程序如果不开多个进程，由于无法利用多核计算优势，所以性能并不好。在Node.js中可以使用childprocess/cluster等扩展开启多进程以解决此问题。
+</code></pre><p>参考资料：<a href="http://rango.swoole.com/archives/381" target="_blank" rel="noopener">http://rango.swoole.com/archives/381</a></p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/Linux/">Linux</a>
+            
+        </div>
+        
+    </article>
+    
+    
+</div>
+<!--<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>->
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <!-- 
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            -->
+        </p>
+        <p>
+            <br><center>Yaosine.github.io © 2018 </center>
+            <!--，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2018 -->
+        </p>
+        
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '09/20/2012',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            //snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://yaosine.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://yaosine.github.io">
+<meta name="author" content="Yaosine">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>linux文件处理常用命令 - Web架构之路 - The way of Web Architecture</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="怎么查看access.log中哪个IP访问最多？怎么查看指定时间范围的日志?">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="WA">WA</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-area-chart "></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/categories/PHP" title="PHP">
+            <i class="fa fa-product-hunt"></i>
+            <span>PHP</span>
+        </a>
+        
+        
+        <a href="/categories/MySQL" title="MySQL">
+            <i class="fa fa-maxcdn"></i>
+            <span>MySQL</span>
+        </a>
+        
+        
+        <a href="/categories/Linux" title="Linux">
+            <i class="fa fa-linux"></i>
+            <span>Linux</span>
+        </a>
+        
+        
+        <a href="/categories/Nginx" title="Nginx">
+            <i class="fa fa-server"></i>
+            <span>Nginx</span>
+        </a>
+        
+        
+        <a href="/categories/NoSQL" title="NoSQL">
+            <i class="fa fa-registered"></i>
+            <span>NoSQL</span>
+        </a>
+        
+        
+        <a href="/categories/Queue" title="Queue">
+            <i class="fa fa-quora"></i>
+            <span>Queue</span>
+        </a>
+        
+        
+        <a href="/categories/ES" title="ES">
+            <i class="fa fa-etsy"></i>
+            <span>ES</span>
+        </a>
+        
+        
+        <a href="/categories/GO" title="GO">
+            <i class="fa fa-google"></i>
+            <span>GO</span>
+        </a>
+        
+    </nav>
+</div>
+<div class="nav-user">
+    <a class="btn-search" href="#"><i class="fa fa-search"></i></a>
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <!--<a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>-->
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">Web架构之路</h1>
+        <h3 class="cover-siteTitle">The way of Web Architecture</h3>
+        <p class="cover-siteDesc">一个关注Web架构技术的IT博客</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/yaosine" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Home</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/PHP" data-name="PHP">PHP</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/Linux" data-name="Linux">Linux</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MySQL" data-name="MySQL">MySQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Queue" data-name="Queue">Queue</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/ES" data-name="ES">ES</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/GO" data-name="GO">GO</a>
+                </li>
+            
+        
+        <script>
+(function (window) {
+    window.INSIGHT_CONFIG = {
+        ROOT_URL: '/',
+        CONTENT_URL: '',
+    };
+})(window);
+</script>
+<!--
+<li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+-->
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <!--
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="" target="_blank">
+                    <img width="48" src="" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="" target="_blank"></a>
+                    <span title="最后编辑于2013-01-15">2013-01-15</span>
+                </p>
+                <p></p>
+            </div>
+            -->
+            <h2 class="post-title">Linux文件处理常用命令</h2>
+            <div class="post-meta">
+                本文发布于：2013-01-15，总共6304个字<!--，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴-->
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>怎么查看access.log中哪个IP访问最多？</p>
+<blockquote>
+<p>awk ‘{print $1}’ access.log | sort | uniq -c |sort -rn -k 1  | head -1</p>
+</blockquote>
+<p>怎么查看时间是2013年1月15号–1月30号的日志?</p>
+<p>可以用sed命令，格式为：sed -n ‘/起始时间/,/结束时间/p’ 日志文件，如下：</p>
+<blockquote>
+<p>sed -n ‘/15\/Jan\/2013/,/30\/Jan\/2013/p’ access.log</p>
+</blockquote>
+<p>如可以用grep，格式为：grep  -E ‘起始时间|结束时间’  日志文件，如下：</p>
+<blockquote>
+<p>grep -E ‘15/Jan/2013|30/Jan/2013’ access.log</p>
+</blockquote>
+<p>当然，你还可以结合cat、grep 、awk这些命令一起来使用都行，下面介绍下这些文件处理常用命令。</p>
+<h2 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h2><p>sort 命令对 File 参数指定的文件中的行排序，并将结果写到标准输出。如果 File 参数指定多个文件，那么 sort 命令将这些文件连接起来，并当作一个文件进行排序。</p>
+<p>sort语法</p>
+<pre><code>[root@www ~]# sort [-fbMnrtuk] [file or stdin]
+选项与参数：
+-f  ：忽略大小写的差异，例如 A 与 a 视为编码相同；
+-b  ：忽略最前面的空格符部分；
+-M  ：以月份的名字来排序，例如 JAN, DEC 等等的排序方法；
+-n  ：使用『纯数字』进行排序(默认是以文字型态来排序的)；
+-r  ：反向排序；
+-u  ：就是 uniq ，相同的数据中，仅出现一行代表；
+-t  ：分隔符，默认是用 [tab] 键来分隔；
+-k  ：以那个区间 (field) 来进行排序的意思
+</code></pre><p>/etc/passwd 内容是以 : 来分隔的，以第三栏来排序:</p>
+<pre><code>[root@www ~]# cat /etc/passwd | sort -t &apos;:&apos; -k 3
+root:x:0:0:root:/root:/bin/bash
+uucp:x:10:14:uucp:/var/spool/uucp:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+bin:x:1:1:bin:/bin:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+</code></pre><p>默认是以字符串来排序的，如果想要使用数字排序：sort -t ‘:’ -k 3n</p>
+<p>默认是升序排序，如果要倒序排序：sort -t ‘:’ -k 3nr</p>
+<h2 id="uniq"><a href="#uniq" class="headerlink" title="uniq"></a>uniq</h2><p> uniq命令可以去除排序过的文件中的重复行，因此uniq经常和sort合用。也就是说，为了使uniq起作用，所有的重复行必须是相邻的。</p>
+<p>uniq语法</p>
+<pre><code>[root@www ~]# uniq [-icu]
+选项与参数：
+-i   ：忽略大小写字符的不同；
+-c  ：进行计数
+-u  ：只显示唯一的行
+</code></pre><p>排序之后删除了重复行，同时在行首位置输出该行重复的次数</p>
+<pre><code>#sort testfile | uniq -c
+1 friend
+3 hello
+2 world 
+</code></pre><h2 id="wc"><a href="#wc" class="headerlink" title="wc"></a>wc</h2><p>统计文件里面有多少单词，多少行，多少字符。</p>
+<p>wc语法</p>
+<pre><code>[root@www ~]# wc [-lwm]
+选项与参数：
+-l  ：仅列出行；
+-w  ：仅列出多少字(英文单字)；
+-m  ：多少字符；
+</code></pre><p>默认使用wc统计/etc/passwd</p>
+<pre><code>#wc /etc/passwd
+40   45 1719 /etc/passwd
+40是行数，45是单词数，1719是字节数
+</code></pre><p>wc的命令比较简单使用，每个参数使用如下：</p>
+<pre><code>#wc -l /etc/passwd   #统计行数，在对记录数时，很常用
+40 /etc/passwd       #表示系统有40个账户
+
+#wc -w /etc/passwd  #统计单词出现次数
+45 /etc/passwd
+
+#wc -m /etc/passwd  #统计文件的字节数
+1719
+</code></pre><h2 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h2><p>cut命令可以从一个文本文件或者文本流中提取文本列。</p>
+<p>cut语法</p>
+<pre><code>[root@www ~]# cut -d&apos;分隔字符&apos; -f fields &lt;==用于有特定分隔字符
+[root@www ~]# cut -c 字符区间            &lt;==用于排列整齐的信息
+选项与参数：
+-d  ：后面接分隔字符。与 -f 一起使用；
+-f  ：依据 -d 的分隔字符将一段信息分割成为数段，用 -f 取出第几段的意思；
+-c  ：以字符 (characters) 的单位取出固定字符区间；
+</code></pre><p>PATH 变量如下</p>
+<pre><code>[root@www ~]# echo $PATH
+/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/X11R6/bin:/usr/games
+# 1 | 2       | 3   | 4       | 5            | 6            | 7
+</code></pre><p>将 PATH 变量取出，我要找出第五个路径。</p>
+<pre><code>#echo $PATH | cut -d &apos;:&apos; -f 5
+/usr/local/bin
+</code></pre><p>将 PATH 变量取出，我要找出第三到最后一个路径。</p>
+<pre><code>echo $PATH | cut -d &apos;:&apos; -f 3-
+/sbin:/usr/sbin:/usr/local/bin:/usr/X11R6/bin:/usr/games
+</code></pre><p>将 PATH 变量取出，我要找出第一到第三，还有第五个路径。</p>
+<pre><code>echo $PATH | cut -d &apos;:&apos; -f 1-3,5
+/bin:/usr/bin:/sbin:/usr/local/bin
+</code></pre><h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p>常用用法:</p>
+<pre><code>[root@www ~]# grep [-acinv] [--color=auto] &apos;搜寻字符串&apos; filename
+选项与参数：
+-a ：将 binary 文件以 text 文件的方式搜寻数据
+-c ：计算找到 &apos;搜寻字符串&apos; 的次数
+-i ：忽略大小写的不同，所以大小写视为相同
+-n ：顺便输出行号
+-v ：反向选择，亦即显示出没有 &apos;搜寻字符串&apos; 内容的那一行！
+--color=auto ：可以将找到的关键词部分加上颜色的显示喔！
+</code></pre><p>根据文件内容递归查找目录</p>
+<pre><code># grep ‘energywise’ *           #在当前目录搜索带&apos;energywise&apos;行的文件
+
+# grep -r ‘energywise’ *        #在当前目录及其子目录下搜索&apos;energywise&apos;行的文件
+# grep -l -r ‘energywise’ *     #在当前目录及其子目录下搜索&apos;energywise&apos;行的文件，但是不显示匹配的行，只显示匹配的文件
+</code></pre><p> 搜索到有 oo 的行，但不想要 oo 前面有 g:</p>
+<blockquote>
+<p>grep -n ‘[^g]oo’ regular_express.txt</p>
+</blockquote>
+<h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><p> awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
+<p> 使用方法：</p>
+<blockquote>
+<p>awk ‘{pattern + action}’ {filenames}</p>
+</blockquote>
+<p>调用方式：</p>
+<pre><code>1.命令行方式
+awk [-F  field-separator]  &apos;commands&apos;  input-file(s)
+其中，commands 是真正awk命令，[-F域分隔符]是可选的。 input-file(s) 是待处理的文件。
+在awk中，文件的每一行中，由域分隔符分开的每一项称为一个域。通常，在不指名-F域分隔符的情况下，默认的域分隔符是空格。
+
+2.shell脚本方式
+将所有的awk命令插入一个文件，并使awk程序可执行，然后awk命令解释器作为脚本的首行，一遍通过键入脚本名称来调用。
+相当于shell脚本首行的：#!/bin/sh
+可以换成：#!/bin/awk
+
+3.将所有的awk命令插入一个单独文件，然后调用：
+awk -f awk-script-file input-file(s)
+其中，-f选项加载awk-script-file中的awk脚本，input-file(s)跟上面的是一样的。
+</code></pre><p><strong>-F指定域分隔符</strong></p>
+<p>只显示/etc/passwd的账户和账户对应的shell且以tab键分割:</p>
+<blockquote>
+<p>cat /etc/passwd |awk  -F ‘:’  ‘{print $1”\t”$7}’</p>
+</blockquote>
+<p><strong>-F正则搜索</strong><br>搜索支持正则，例如找root开头的: </p>
+<blockquote>
+<p>awk -F: ‘/^root/‘ /etc/passwd</p>
+</blockquote>
+<p><strong>awk内置变量</strong></p>
+<pre><code>ARGC               命令行参数个数
+ARGV               命令行参数排列
+ENVIRON            支持队列中系统环境变量的使用
+FILENAME           awk浏览的文件名
+FNR                浏览文件的记录数
+FS                 设置输入域分隔符，等价于命令行 -F选项
+NF                 浏览记录的域的个数
+NR                 已读的记录数
+OFS                输出域分隔符
+ORS                输出记录分隔符
+RS                 控制记录分隔符
+</code></pre><p> 此外,$0变量是指整条记录。$1表示当前行的第一个域,$2表示当前行的第二个域,……以此类推。</p>
+<p>printf格式化字符串</p>
+<blockquote>
+<p>awk  -F ‘:’  ‘{printf(“filename:%10s,linenumber:%s,columns:%s,linecontent:%s\n”,FILENAME,NR,NF,$0)}’ /etc/passwd</p>
+</blockquote>
+<p><strong>BEGING-END</strong></p>
+<p>awk工作流程是这样的：先执行BEGING，然后读取文件，读入有/n换行符分割的一条记录，然后将记录按指定的域分隔符划分域，填充域，$0则表示所有域,$1表示第一个域,$n表示第n个域,随后开始执行模式所对应的动作action。接着开始读入第二条记录······直到所有的记录都读完，最后执行END操作。</p>
+<blockquote>
+<p>cat /etc/passwd |awk  -F ‘:’  ‘BEGIN {print “name,shell”}  {print $1”,”$7} END {print “blue,/bin/nosh”}’</p>
+</blockquote>
+<p>统计/etc/passwd的账户人数:</p>
+<blockquote>
+<p>awk ‘BEGIN {count=0;print “[start]user count is “, count} {count=count+1;print $0;} END{print “[end]user count is “, count}’ /etc/passwd</p>
+</blockquote>
+<p> 统计某个文件夹下的文件占用的字节数以M为单位显示:</p>
+<blockquote>
+<p>ls -l |awk ‘BEGIN {size=0;} {size=size+$5;} END{print “[end]size is “, size/1024/1024,”M”}’ </p>
+</blockquote>
+<p> 统计某个文件夹下的文件占用的字节数,过滤4096大小的文件(一般都是文件夹):</p>
+<blockquote>
+<p>ls -l |awk ‘BEGIN {size=0;print “[start]size is “, size} {if($5!=4096){size=size+$5;}} END{print “[end]size is “, size/1024/1024,”M”}’<br>[end]size is  8.22339 M</p>
+</blockquote>
+<p>循环语句</p>
+<p>awk中的循环语句同样借鉴于C语言，支持while、do/while、for、break、continue，这些关键字的语义和C语言中的语义完全相同。</p>
+<p>数组</p>
+<p>  因为awk中数组的下标可以是数字和字母，数组的下标通常被称为关键字(key)。值和关键字都存储在内部的一张针对key/value应用hash的表格里。由于hash不是顺序存储，因此在显示数组内容时会发现，它们并不是按照你预料的顺序显示出来的。数组和变量一样，都是在使用时自动创建的，awk也同样会自动判断其存储的是数字还是字符串。一般而言，awk中的数组用来从记录中收集信息，可以用于计算总和、统计单词以及跟踪模板被匹配的次数等等。</p>
+<p>显示/etc/passwd的账户:</p>
+<blockquote>
+<p>awk -F ‘:’ ‘BEGIN {count=0;} {name[count] = $1;count++;}; END{for (i = 0; i &lt; NR; i++) print i, name[i]}’ /etc/passwd</p>
+</blockquote>
+<h2 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h2><p>使用参数:</p>
+<pre><code>[root@www ~]# sed [-nefr] [动作]
+选项与参数：
+-n ：使用安静(silent)模式。在一般 sed 的用法中，所有来自 STDIN 的数据一般都会被列出到终端上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。
+-e ：直接在命令列模式上进行 sed 的动作编辑；
+-f ：直接将 sed 的动作写在一个文件内， -f filename 则可以运行 filename 内的 sed 动作；
+-r ：sed 的动作支持的是延伸型正规表示法的语法。(默认是基础正规表示法语法)
+-i ：直接修改读取的文件内容，而不是输出到终端。
+
+动作说明： [n1[,n2]]function
+n1, n2 ：不见得会存在，一般代表『选择进行动作的行数』，举例来说，如果我的动作是需要在 10 到 20 行之间进行的，则『 10,20[动作行为] 』
+
+function：
+a ：新增， a 的后面可以接字串，而这些字串会在新的一行出现(目前的下一行)～
+c ：取代， c 的后面可以接字串，这些字串可以取代 n1,n2 之间的行！
+d ：删除，因为是删除啊，所以 d 后面通常不接任何咚咚；
+i ：插入， i 的后面可以接字串，而这些字串会在新的一行出现(目前的上一行)；
+p ：列印，亦即将某个选择的数据印出。通常 p 会与参数 sed -n 一起运行～
+s ：取代，可以直接进行取代的工作哩！通常这个 s 的动作可以搭配正规表示法！例如 1,20s/old/new/g 就是啦！
+</code></pre><p>将 /etc/passwd 的内容列出并且列印行号，同时，请将第 2~5 行删除</p>
+<blockquote>
+<p>nl /etc/passwd | sed ‘2,5d’</p>
+</blockquote>
+<p>删除/etc/passwd第三行到末尾的数据，并把bash替换为blueshell</p>
+<blockquote>
+<p>nl /etc/passwd | sed -e ‘3,$d’ -e ‘s/bash/blueshell/‘</p>
+</blockquote>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/Linux/">Linux</a>
+            
+        </div>
+        
+    </article>
+    
+    
+</div>
+<!--<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>->
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <!-- 
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            -->
+        </p>
+        <p>
+            <br><center>Yaosine.github.io © 2018 </center>
+            <!--，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2018 -->
+        </p>
+        
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '09/20/2012',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            //snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>

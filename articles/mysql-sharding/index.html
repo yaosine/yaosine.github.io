@@ -27,9 +27,9 @@
 <div id="nav">
     <nav class="nav-menu">
         <a class="site-name current" href="/" title="WA">WA</a>
-        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
-        <a href="/archives" title="归档"><i class="fa fa-area-chart "></i><span>归档</span></a>
-        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-area-chart "></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
         <!-- custom single page of menus -->
         
         
@@ -158,15 +158,15 @@
 <!--
 <li class="page-search">
     <form id="search" class="search-form">
-        <label for="s" class="sr-only">请输入关键字</label>
-        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
-        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -178,11 +178,11 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
@@ -211,7 +211,7 @@
             -->
             <h2 class="post-title">MySQL分表、分库、分片和分区</h2>
             <div class="post-meta">
-                本文发布于：2016-05-30，总共3469个字，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴
+                本文发布于：2016-05-30，总共3469个字<!--，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴-->
             </div>
         </div>
         <div class="post-content markdown-body">
@@ -270,7 +270,7 @@ PARTITION p_catchall VALUES LESS THAN MAXVALUE);
 </ol>
 <h2 id="四、分表和分库"><a href="#四、分表和分库" class="headerlink" title="四、分表和分库"></a>四、分表和分库</h2><p>分表能够解决单表数据量过大带来的查询效率下降的问题，但是，却无法给数据库的并发处理能力带来质的提升。面对高并发的读写访问，当数据库master服务器无法承载写操作压力时，不管如何扩展slave服务器，此时都没有意义了。因此，我们必须换一种思路，对数据库进行拆分，从而提高数据库写入能力，这就是所谓的分库。</p>
 <p>与分表策略相似，分库可以采用通过一个关键字取模的方式，来对数据访问进行路由，如下图所示</p>
-<p><img src="http://img.blog.csdn.net/20160221190124189?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="image"></p>
+<p><img src="/images/posts/mysqldb.png" alt="image"></p>
 <h2 id="五、分库分表存在的问题"><a href="#五、分库分表存在的问题" class="headerlink" title="五、分库分表存在的问题"></a>五、分库分表存在的问题</h2><ul>
 <li>1 事务问题</li>
 </ul>
@@ -285,7 +285,7 @@ PARTITION p_catchall VALUES LESS THAN MAXVALUE);
 <p>额外的数据管理负担，最显而易见的就是数据的定位问题和数据的增删改查的重复执行问题，这些都可以通过应用程序解决，但必然引起额外的逻辑运算，例如，对于一个记录用户成绩的用户数据表userTable，业务要求查出成绩最好的100位，在进行分表之前，只需一个order by语句就可以搞定，但是在进行分表之后，将需要n个order by语句，分别查出每一个分表的前100名用户数据，然后再对这些数据进行合并计算，才能得出结果。</p>
 <p>解决方案: 使用类似JTA提供的分布式事物机制</p>
 <h2 id="六、分片（Sharding）和分区（Partition）"><a href="#六、分片（Sharding）和分区（Partition）" class="headerlink" title="六、分片（Sharding）和分区（Partition）"></a>六、分片（Sharding）和分区（Partition）</h2><p>sharding和partition的区别：</p>
-<p><img src="http://images.cnblogs.com/cnblogs_com/riccc/Database/mysql-sharding.png" alt="image"></p>
+<p><img src="/images/posts/mysql-sharding.png" alt="image"></p>
 <p>分库分表的策略及实施：<a href="http://blog.csdn.net/why_2012_gogo/article/details/51507646" target="_blank" rel="noopener">http://blog.csdn.net/why_2012_gogo/article/details/51507646</a></p>
 
         </div>
@@ -295,7 +295,7 @@ PARTITION p_catchall VALUES LESS THAN MAXVALUE);
             </a>
         </div>
         
-        <div class="post-tags">标签：
+        <div class="post-tags">Tags：
             
             <a href="/tags/MySQL/">MySQL</a>
             
@@ -305,18 +305,18 @@ PARTITION p_catchall VALUES LESS THAN MAXVALUE);
     
     
 </div>
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!--<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>->
         </div><!-- end #main-->
     </div><!-- end #body -->
     <footer class="footer">
     <div class="footer-inner">
         <p>
             <!-- 
-            <a href="/about"  title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             -->
         </p>
         <p>
-            本站采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+            <br><center>Yaosine.github.io © 2018 </center>
             <!--，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
             ©2018 -->
         </p>
@@ -336,7 +336,7 @@ PARTITION p_catchall VALUES LESS THAN MAXVALUE);
         SimpleCore.init({
             buildingTime: '09/20/2012',
             current: $('.post-tags').length > 0 ? 'post' : 'archive',
-            snsQRCode: '/images/sns-qrcode.png',
+            //snsQRCode: '/images/sns-qrcode.png',
             donateImg: '/images/donate-qr.png',
         });
     });
