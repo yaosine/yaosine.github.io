@@ -27,9 +27,9 @@
 <div id="nav">
     <nav class="nav-menu">
         <a class="site-name current" href="/" title="WA">WA</a>
-        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
-        <a href="/archives" title="Archives"><i class="fa fa-area-chart "></i><span>Archives</span></a>
-        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>首页</span></a>
+        <a href="/archives" title="归档"><i class="fa fa-area-chart "></i><span>归档</span></a>
+        <a href="/tags" title="标签"><i class="fa fa-tags"></i><span>标签</span></a>
         <!-- custom single page of menus -->
         
         
@@ -126,7 +126,7 @@
                     <a href="/categories/MySQL" data-name="MySQL">MySQL</a>
                 </li>
             
-                <li class="active">
+                <li class="">
                     <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
                 </li>
             
@@ -134,7 +134,7 @@
                     <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
                 </li>
             
-                <li class="">
+                <li class="active">
                     <a href="/categories/Queue" data-name="Queue">Queue</a>
                 </li>
             
@@ -158,15 +158,15 @@
 <!--
 <li class="page-search">
     <form id="search" class="search-form">
-        <label for="s" class="sr-only">Input Search key Words Here</label>
-        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
-        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+        <label for="s" class="sr-only">请输入关键字</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="请输入关键字" />
+        <button type="submit" class="search-form-submit" title="搜索"><i class="fa fa-search"></i></button>
     </form>
     <div class="ins-search">
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -178,11 +178,11 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
         },
         ROOT_URL: '/',
         //CONTENT_URL: '/content.json',
@@ -212,12 +212,12 @@
             -->
             <h2 class="post-title">Kafka强在哪？</h2>
             <div class="post-meta">
-                本文发布于：2017-03-12，总共11189个字<!--，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴-->
+                本文发布于：2017-03-12，总共11196个字<!--，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴-->
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2 id="一、数据说话"><a href="#一、数据说话" class="headerlink" title="一、数据说话"></a>一、数据说话</h2><p>消息列表哪家强?</p>
-<p>下面是云栖社区对Kafka、RabbitMQ、RocketMQ发送小消息性能对比</p>
+            <h2 id="一、数据说话"><a href="#一、数据说话" class="headerlink" title="一、数据说话"></a>一、数据说话</h2><p><strong>消息列表哪家强?</strong></p>
+<p>我们先看下云栖社区对Kafka、RabbitMQ、RocketMQ发送小消息性能对比</p>
 <p>分布式系统中,我们广泛运用消息中间件进行系统间的数据交换,便于异步解耦。现在开源的消息中间件有很多,前段时间我们自家的产品 RocketMQ (MetaQ的内核) 也顺利开源,得到大家的关注。<br>那么,消息中间件性能究竟哪家强?<br>带着这个疑问,我们中间件测试组对常见的三类消息产品(Kafka、RabbitMQ、RocketMQ)做了性能比较。</p>
 <p>Kafka是LinkedIn开源的分布式发布-订阅消息系统,目前归属于Apache定级项目。Kafka主要特点是基于Pull的模式来处理消息消费,追求高吞吐量,一开始的目的就是用于日志收集和传输。0.8版本开始支持复制,不支持事务,对消息的重复、丢失、错误没有严格要求,适合产生大量数据的互联网服务的数据收集业务。</p>
 <p>RabbitMQ是使用Erlang语言开发的开源消息队列系统,基于AMQP协议来实现。AMQP的主要特征是面向消息、队列、路由(包括点对点和发布/订阅)、可靠性、安全。AMQP协议更多用在企业系统内,对数据一致性、稳定性和可靠性要求很高的场景,对性能和吞吐量的要求还在其次。</p>
@@ -292,7 +292,8 @@
 <li>Kafka/Jafka</li>
 </ul>
 <p>Kafka是Apache下的一个子项目，是一个高性能跨语言分布式发布/订阅消息队列系统，而Jafka是在Kafka之上孵化而来的，即Kafka的一个升级版。具有以下特性：快速持久化，可以在O(1)的系统开销下进行消息持久化；高吞吐，在一台普通的服务器上既可以达到10W/s的吞吐速率；完全的分布式系统，Broker、Producer、Consumer都原生自动支持分布式，自动实现负载均衡；支持Hadoop数据并行加载，对于像Hadoop的一样的日志数据和离线分析系统，但又要求实时处理的限制，这是一个可行的解决方案。Kafka通过Hadoop的并行加载机制统一了在线和离线的消息处理。Apache Kafka相对于ActiveMQ是一个非常轻量级的消息系统，除了性能非常好之外，还是一个工作良好的分布式系统。</p>
-<h2 id="三、Kafka架构"><a href="#三、Kafka架构" class="headerlink" title="三、Kafka架构"></a>三、Kafka架构</h2><ul>
+<h2 id="三、Kafka架构"><a href="#三、Kafka架构" class="headerlink" title="三、Kafka架构"></a>三、Kafka架构</h2><p><strong>基础概念</strong></p>
+<ul>
 <li>Broker</li>
 </ul>
 <p>Kafka集群包含一个或多个服务器，这种服务器被称为broker</p>
@@ -413,11 +414,11 @@ public class JasonPartitioner&lt;T&gt; implements Partitioner {
             </a>
         </div>
         
-        <div class="post-tags">Tags：
+        <div class="post-tags">标签：
             
             <a href="/tags/Kafka/">Kafka</a>
             
-            <a href="/tags/NoSQL/">NoSQL</a>
+            <a href="/tags/Queue/">Queue</a>
             
         </div>
         
@@ -432,7 +433,7 @@ public class JasonPartitioner&lt;T&gt; implements Partitioner {
     <div class="footer-inner">
         <p>
             <!-- 
-            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            <a href="/about"  title="关于本站">关于本站</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
             -->
         </p>
         <p>
