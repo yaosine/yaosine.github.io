@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://yaosine.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://yaosine.github.io">
+<meta name="author" content="Yaosine">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>phper如何学习socket - Web架构之路 - The way of Web Architecture</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="套接字（socket）是通信的基石，是支持TCP/IP协议的网络通信的基本操作单元">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="WA">WA</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-area-chart "></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/categories/PHP" title="PHP">
+            <i class="fa fa-product-hunt"></i>
+            <span>PHP</span>
+        </a>
+        
+        
+        <a href="/categories/MySQL" title="MySQL">
+            <i class="fa fa-maxcdn"></i>
+            <span>MySQL</span>
+        </a>
+        
+        
+        <a href="/categories/Linux" title="Linux">
+            <i class="fa fa-linux"></i>
+            <span>Linux</span>
+        </a>
+        
+        
+        <a href="/categories/Nginx" title="Nginx">
+            <i class="fa fa-server"></i>
+            <span>Nginx</span>
+        </a>
+        
+        
+        <a href="/categories/NoSQL" title="NoSQL">
+            <i class="fa fa-registered"></i>
+            <span>NoSQL</span>
+        </a>
+        
+        
+        <a href="/categories/Queue" title="Queue">
+            <i class="fa fa-quora"></i>
+            <span>Queue</span>
+        </a>
+        
+        
+        <a href="/categories/ES" title="ES">
+            <i class="fa fa-etsy"></i>
+            <span>ES</span>
+        </a>
+        
+        
+        <a href="/categories/GO" title="GO">
+            <i class="fa fa-google"></i>
+            <span>GO</span>
+        </a>
+        
+    </nav>
+</div>
+<div class="nav-user">
+    <!--<a class="btn-search" href="#"><i class="fa fa-search"></i></a>-->
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <!--<a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>-->
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">Web架构之路</h1>
+        <h3 class="cover-siteTitle">The way of Web Architecture</h3>
+        <p class="cover-siteDesc">一个关注Web架构技术的IT博客</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/yaosine" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Home</a></li>
+        
+            
+                <li class="active">
+                    <a href="/categories/PHP" data-name="PHP">PHP</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Linux" data-name="Linux">Linux</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MySQL" data-name="MySQL">MySQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Queue" data-name="Queue">Queue</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/ES" data-name="ES">ES</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/GO" data-name="GO">GO</a>
+                </li>
+            
+        
+        <script>
+(function (window) {
+    window.INSIGHT_CONFIG = {
+        ROOT_URL: '/',
+        CONTENT_URL: ''
+    };
+})(window);
+</script>
+<!--
+<li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        //CONTENT_URL: '/content.json',
+        CONTENT_URL: '',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+-->
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <!--
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="" target="_blank">
+                    <img width="48" src="" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="" target="_blank"></a>
+                    <span title="最后编辑于2017-01-15">2017-01-15</span>
+                </p>
+                <p></p>
+            </div>
+            -->
+            <h2 class="post-title">phper如何学习socket</h2>
+            <div class="post-meta">
+                本文发布于：2017-01-15，总共4574个字<!--，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴-->
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <h2 id="什么是socket？"><a href="#什么是socket？" class="headerlink" title="什么是socket？"></a>什么是socket？</h2><p>概念：套接字（socket）是通信的基石，是支持TCP/IP协议的网络通信的基本操作单元。它是网络通信过程中端点的抽象表示，包含进行网络通信必须的五种信息：连接使用的协议，本地主机的IP地址，本地进程的协议端口，远地主机的IP地址，远地进程的协议端口。<br>懵逼了吧？简单点，姐觉得套接字（socket）就是TCP/IP协议对外提供的接口，你要写个应用程序要向网络发出请求，应答请求，你就用他就对了。通过Socket，我们才能使用TCP/IP协议。但是sokect又不仅仅是应用于TCP/IP协议。<br>这里又引出来一个概念，TCP/IP协议。要想理解socket首先得熟悉一下TCP/IP协议族。顺便复习一下吧。大学没好好学，都还给老师了吧。</p>
+<h2 id="什么是TCP协议？"><a href="#什么是TCP协议？" class="headerlink" title="什么是TCP协议？"></a>什么是TCP协议？</h2><p>就是三次握手，四次分手，面向连接的，可靠的传输层协议。（此处要记住tcp协议的11中状态，细节自己去搜索吧）</p>
+<h2 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h2><p>顺便复习下七层网络吧，当年大学修网络这门课的时候，这可是必考题呢。<br>应用层，表示层，会话层，传输层，网络层，数据链路层，物理层。</p>
+<p>不同于ISO模型的七个分层，TCP/IP协议参考模型把所有的TCP/IP系列协议归类到四个抽象层中<br>应用层：TFTP，HTTP，SNMP，FTP，SMTP，DNS，Telnet 等等<br>传输层：TCP，UDP<br>网络层：IP，ICMP，OSPF，EIGRP，IGMP<br>数据链路层：SLIP，CSLIP，PPP，MTU<br>每一抽象层建立在低一层提供的服务上，并且为高一层提供服务，看起来大概是这样子的</p>
+<p><img src="/images/posts/socket11.jpg" alt="image"></p>
+<p>TCP/IP协议参考模型</p>
+<p><img src="/images/posts/socket12.jpg" alt="image"></p>
+<p>Socket在哪里呢？</p>
+<p><img src="/images/posts/socket13.jpg" alt="image"></p>
+<p>原来Socket在这里<br>啥原理？咋用？</p>
+<p>以前听到Socket编程，觉得它是比较高深的编程知识，但是对于phper来说，我们只需要知道他的工作原理就够了。下面这个例子很好得解释了这个原理。</p>
+<p>一个生活中的场景。你要打电话给一个朋友，先拨号，朋友听到电话铃声后提起电话，这时你和你的朋友就建立起了连接，就可以讲话了。等交流结束，挂断电话结束此次交谈。拿下图来解释这个过程就是：</p>
+<p><img src="/images/posts/socket14.jpg" alt="image"></p>
+<p>基于TCP的socket编程客户端和服务端通信过程</p>
+<p>基于TCP（面向连接）的socket编程，分为客户端和服务器端。<br>客户端的流程如下：</p>
+<ul>
+<li>（1）创建套接字（socket）</li>
+<li>（2）向服务器发出连接请求（connect）</li>
+<li>（3）和服务器端进行通信（send/recv）</li>
+<li>（4）关闭套接字</li>
+</ul>
+<p>服务器端的流程如下：</p>
+<ul>
+<li>（1）创建套接字（socket）</li>
+<li>（2）将套接字绑定到一个本地地址和端口上（bind）</li>
+<li>（3）将套接字设为监听模式，准备接收客户端请求（listen）</li>
+<li>（4）等待客户请求到来；当请求到来后，接受连接请求，返回一个新的对应于此次连接的套接字（accept）</li>
+<li>（5）用返回的套接字和客户端进行通信（send/recv）</li>
+<li>（6）返回，等待另一个客户请求。</li>
+<li>（7）关闭套接字。</li>
+</ul>
+<h2 id="和phper相关的socket知识"><a href="#和phper相关的socket知识" class="headerlink" title="和phper相关的socket知识"></a>和phper相关的socket知识</h2><p>谈了很多理论，这些理论很多phper其实都不是很明白，因为这门语言诞生之初，就是为了web而生的，我们大部分的时间都在写的是网页，网页是什么？就是http协议喽~</p>
+<p><strong>Socket与HTTP</strong></p>
+<p>由于通常情况下Socket连接就是TCP连接，因此Socket连接一旦建立，通信双方即可开始相互发送数据内容，直到双方连接断开。</p>
+<p>而HTTP连接使用的是“请求—响应”的方式，不仅在请求时需要先建立连接，而且需要客户端向服务器发出请求后，服务器端才能回复数据。</p>
+<p>很多情况下，需要服务器端主动向客户端推送数据，保持客户端与服务器数据的实时与同步。此时若双方建立的是Socket连接，服务器就可以直接将数据传送 给客户端；若双方建立的是HTTP连接，则服务器需要等到客户端发送一次请求后才能将数据传回给客户端，因此，客户端定时向服务器端发送连接请求，不仅可以保持在线，同时也是在“询问”服务器是否有新的数据，如果有就将数据传给客户端。</p>
+<p>通常，我们的ajax做心跳就是定时向服务器端发出请求，询问是否有新的数据。</p>
+<p><strong>用php实现一个socket</strong></p>
+<p>我们写个简单的例子哦~</p>
+<p>安装socket扩展，默认是没有安装的呢</p>
+<pre><code>/alidata/server/php/bin/phpize ./configure --enable-sockets --with-php-config=/alidata/server/php/bin/php-config make make install vim /alidata/server/php-5.4.41/etc/php.ini （加入extension=php_sockets.so） service httpd restart
+</code></pre><p>扩展安装好可以开始编程了</p>
+<p><strong>服务端代码</strong></p>
+<pre><code>&lt;?php
+error_reporting(E_ALL);
+set_time_limit(0);
+ob_implicit_flush();
+//本地IP
+$address = &apos;127.0.0.1&apos;;
+//设置用111端口进行通信
+$port = 10000;
+//创建SOCKET
+if (($sock = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) &lt; 0) {
+    echo &quot;socket创建失败原因 &quot; . socket_strerror($sock) . &quot;\n&quot;;
+}
+if (($ret = socket_bind($sock, $address, $port)) &lt; 0) {
+    echo &quot;创建套接字失败原因 &quot; . socket_strerror($ret) . &quot;\n&quot;;
+}
+//监听
+if (($ret = socket_listen($sock, 5)) &lt; 0) {
+    echo &quot;listen failed reason: &quot; . socket_strerror($ret) . &quot;\n&quot;;
+}
+do {
+    //接收命令 
+    if (($msgsock = @socket_accept($sock)) &lt; 0) {
+        echo &quot;failed reason: &quot; . socket_strerror($msgsock) . &quot;\n&quot;;
+        break;
+    }
+    $msg = &quot;\nPHP Test Server. \n&quot; .&quot;use quit,shutdown,sun...\n&quot;;
+    @socket_write($msgsock, $msg, strlen($msg));
+    do {
+        if (false === ($buf = @socket_read($msgsock, 20, PHP_NORMAL_READ))) {
+            echo &quot;socket_read() failed: reason: &quot; . socket_strerror($ret) . &quot;\n&quot;;
+            break 2;
+        }
+        if (!$buf = trim($buf)) {
+            continue;
+        }
+        if ($buf == &apos;quit&apos;) {
+            break;
+        }
+        if ($buf == &apos;shutdown&apos;) {
+            socket_close($msgsock);
+            break 2;
+        }
+        if ($buf == &apos;sun&apos;) {
+            echo&apos;what are you doing?&apos;;
+        }
+        $talkback = &quot;Backinformation : &apos;$buf&apos;.\n&quot;;
+        socket_write($msgsock, $talkback, strlen($talkback));
+        echo &quot;$buf\n&quot;;
+    } while (true);
+</code></pre><p><strong>客户端代码</strong></p>
+<pre><code>&lt;?php
+error_reporting(E_ALL);
+$service_port = 10000;
+$address = &apos;127.0.0.1&apos;;
+$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+if ($socket &lt; 0) {
+    echo &quot;socket create failed. : &quot; . socket_strerror($socket) . &quot;\n&quot;;
+} else {
+    echo &quot;OK.\n&quot;;
+}
+$result = socket_connect($socket, $address, $service_port);
+if ($result &lt; 0) {
+    echo &quot;SOCKET connect failed. : ($result) &quot; . socket_strerror($result) . &quot;\n&quot;;
+} else {
+    echo &quot;OK.\n&quot;;
+}
+
+$in = &quot;HEAD / HTTP/1.1\r\n&quot;;
+$in .= &quot;Connection: Close\r\n\r\n&quot;;
+$out = &apos;&apos;;
+echo &quot;Send Command..........&quot;;
+$in .= &quot;quit\n&quot;;
+socket_write($socket, $in, strlen($in));
+echo &quot;OK.\n&quot;;
+echo &quot;Reading Backinformatin:\n\n&quot;;
+while ($out = socket_read($socket, 2048)) {
+    echo $out;
+}
+echo &quot;Close socket........&quot;;
+socket_close($socket);
+echo &quot;OK,haha.\n\n&quot;;
+</code></pre>
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/PHP/">PHP</a>
+            
+            <a href="/tags/Socket/">Socket</a>
+            
+        </div>
+        
+    </article>
+    
+    
+</div>
+<!--<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>->
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <!-- 
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            -->
+        </p>
+        <p>
+            <br><center>Yaosine.github.io © 2018 </center>
+            <!--，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2018 -->
+        </p>
+        
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '09/20/2012',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            //snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>
