@@ -1,0 +1,409 @@
+<!DOCTYPE HTML>
+<html class="no-js" lang="zh-CN">
+<head>
+    <!--[if lte IE 9]>
+<meta http-equiv="refresh" content="0;url=https://yaosine.github.io/warn.html">
+<![endif]-->
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta http-equiv="mobile-agent" content="format=html5; url=https://yaosine.github.io">
+<meta name="author" content="Yaosine">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/SimpleStyle.min.css">
+
+<link rel="shortcut icon" href="/images/favicon.png">
+
+
+<title>elasticsearch工作原理 - Web架构之路 - The way of Web Architecture</title>
+
+<meta name="keywords" content="">
+
+<meta name="description " content="ElasticSearch是一个基于Lucene构建的开源、分布式、RESTful的全文本搜索引擎">
+</head>
+<body>
+<div id="nav">
+    <nav class="nav-menu">
+        <a class="site-name current" href="/" title="WA">WA</a>
+        <a class="site-index current" href="/"><i class="fa fa-home"></i><span>Home</span></a>
+        <a href="/archives" title="Archives"><i class="fa fa-area-chart "></i><span>Archives</span></a>
+        <a href="/tags" title="Tags"><i class="fa fa-tags"></i><span>Tags</span></a>
+        <!-- custom single page of menus -->
+        
+        
+        <a href="/categories/PHP" title="PHP">
+            <i class="fa fa-product-hunt"></i>
+            <span>PHP</span>
+        </a>
+        
+        
+        <a href="/categories/MySQL" title="MySQL">
+            <i class="fa fa-maxcdn"></i>
+            <span>MySQL</span>
+        </a>
+        
+        
+        <a href="/categories/Linux" title="Linux">
+            <i class="fa fa-linux"></i>
+            <span>Linux</span>
+        </a>
+        
+        
+        <a href="/categories/Nginx" title="Nginx">
+            <i class="fa fa-server"></i>
+            <span>Nginx</span>
+        </a>
+        
+        
+        <a href="/categories/NoSQL" title="NoSQL">
+            <i class="fa fa-registered"></i>
+            <span>NoSQL</span>
+        </a>
+        
+        
+        <a href="/categories/Queue" title="Queue">
+            <i class="fa fa-quora"></i>
+            <span>Queue</span>
+        </a>
+        
+        
+        <a href="/categories/ES" title="ES">
+            <i class="fa fa-etsy"></i>
+            <span>ES</span>
+        </a>
+        
+        
+        <a href="/categories/GO" title="GO">
+            <i class="fa fa-google"></i>
+            <span>GO</span>
+        </a>
+        
+    </nav>
+</div>
+<div class="nav-user">
+    <!--<a class="btn-search" href="#"><i class="fa fa-search"></i></a>-->
+    <a class="btn-read-mode" href="#"><i class="fa fa-sun-o"></i></a>
+    <!--<a class="btn-sns-qr" href="javascript:"><i class="fa fa-telegram"></i></a>-->
+</div>
+
+<div id="wrapper" class="clearfix">
+    <div id="body">
+        <div class="main" id="main">
+            <div id="cover">
+    <div class="cover-img"></div>
+    <div class="cover-info">
+        
+        <h1 class="cover-siteName">Web架构之路</h1>
+        <h3 class="cover-siteTitle">The way of Web Architecture</h3>
+        <p class="cover-siteDesc">一个关注Web架构技术的IT博客</p>
+        <div class="cover-sns">
+            
+            <div class="btn btn-github">
+                <a href="https://github.com/yaosine" target="_blank" title="github" ref="friend">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="page-title">
+    <ul>
+        <li><a href="/">Home</a></li>
+        
+            
+                <li class="">
+                    <a href="/categories/PHP" data-name="PHP">PHP</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Linux" data-name="Linux">Linux</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/MySQL" data-name="MySQL">MySQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/Queue" data-name="Queue">Queue</a>
+                </li>
+            
+                <li class="active">
+                    <a href="/categories/ES" data-name="ES">ES</a>
+                </li>
+            
+                <li class="">
+                    <a href="/categories/GO" data-name="GO">GO</a>
+                </li>
+            
+        
+        <script>
+(function (window) {
+    window.INSIGHT_CONFIG = {
+        ROOT_URL: '/',
+        CONTENT_URL: ''
+    };
+})(window);
+</script>
+<!--
+<li class="page-search">
+    <form id="search" class="search-form">
+        <label for="s" class="sr-only">Input Search key Words Here</label>
+        <input class="search-field" type="text" name="s" class="text" placeholder="Input Search key Words Here" />
+        <button type="submit" class="search-form-submit" title="Search"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        //CONTENT_URL: '/content.json',
+        CONTENT_URL: '',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+</li>
+-->
+    </ul>
+</div>
+<div class="main-inner">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-header">
+            <!--
+            <div class="post-author clearfix">
+                <a class="avatar fleft" href="" target="_blank">
+                    <img width="48" src="" alt="avatar"/>
+                </a>
+                <p><span class="label">作者</span>
+                    <a href="" target="_blank"></a>
+                    <span title="最后编辑于2017-09-10">2017-09-10</span>
+                </p>
+                <p></p>
+            </div>
+            -->
+            <h2 class="post-title">ElasticSearch工作原理</h2>
+            <div class="post-meta">
+                本文发布于：2017-09-10，总共6587个字<!--，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴-->
+            </div>
+        </div>
+        <div class="post-content markdown-body">
+            <p>ElasticSearch(ES)是一个基于Lucene构建的开源、分布式、RESTful的全文本搜索引擎。</p>
+<p>不过，ElasticSearch却也不仅只是一个全文本搜索引擎，它还是一个分布式实时文档存储，其中每个field均是被索引的数据且可被搜索；也是一个带实时分析功能的分布式搜索引擎，并且能够扩展至数以百计的服务器存储及处理PB级的数据。</p>
+<p>如前所述，ElasticSearch在底层利用Lucene完成其索引功能，因此其许多基本概念源于Lucene。</p>
+<p>我们先说说ES的基本概念。</p>
+<ul>
+<li>索引(Index)</li>
+</ul>
+<p>ES将数据存储于一个或多个索引中，索引是具有类似特性的文档的集合。类比传统的关系型数据库领域来说，索引相当于SQL中的一个数据库，或者一个数据存储方案(schema)。</p>
+<p>索引由其名称(必须为全小写字符)进行标识，并通过引用此名称完成文档的创建、搜索、更新及删除操作。一个ES集群中可以按需创建任意数目的索引。</p>
+<ul>
+<li>类型(Type)</li>
+</ul>
+<p>类型是索引内部的逻辑分区(category/partition)，然而其意义完全取决于用户需求。因此，一个索引内部可定义一个或多个类型(type)。一般来说，类型就是为那些拥有相同的域的文档做的预定义。</p>
+<p>例如，在索引中，可以定义一个用于存储用户数据的类型，一个存储日志数据的类型，以及一个存储评论数据的类型。类比传统的关系型数据库领域来说，类型相当于“表”。</p>
+<ul>
+<li>文档(Document)</li>
+</ul>
+<p>文档是Lucene索引和搜索的原子单位，它是包含了一个或多个域的容器，基于JSON格式进行表示。</p>
+<p>文档由一个或多个域组成，每个域拥有一个名字及一个或多个值，有多个值的域通常称为“多值域”。每个文档可以存储不同的域集，但同一类型下的文档至应该有某种程度上的相似之处。</p>
+<ul>
+<li>映射(Mapping)</li>
+</ul>
+<p>ES中，所有的文档在存储之前都要首先进行分析。用户可根据需要定义如何将文本分割成token、哪些token应该被过滤掉，以及哪些文本需要进行额外处理等等。</p>
+<p>另外，ES还提供了额外功能，例如将域中的内容按需排序。事实上，ES也能自动根据其值确定域的类型。</p>
+<p>接下去再说说ES Cluster相关的一些概念。</p>
+<ul>
+<li>集群(Cluster)</li>
+</ul>
+<p>ES集群是一个或多个节点的集合，它们共同存储了整个数据集，并提供了联合索引以及可跨所有节点的搜索能力。</p>
+<p>多节点组成的集群拥有冗余能力，它可以在一个或几个节点出现故障时保证服务的整体可用性。</p>
+<p>集群靠其独有的名称进行标识，默认名称为“elasticsearch”。节点靠其集群名称来决定加入哪个ES集群，一个节点只能属一个集群。</p>
+<p>如果不考虑冗余能力等特性，仅有一个节点的ES集群一样可以实现所有的存储及搜索功能。</p>
+<ul>
+<li>节点(Node)</li>
+</ul>
+<p>运行了单个实例的ES主机称为节点，它是集群的一个成员，可以存储数据、参与集群索引及搜索操作。</p>
+<p>类似于集群，节点靠其名称进行标识，默认为启动时自动生成的随机Marvel字符名称。</p>
+<p>用户可以按需要自定义任何希望使用的名称，但出于管理的目的，此名称应该尽可能有较好的识别性。</p>
+<p>节点通过为其配置的ES集群名称确定其所要加入的集群。</p>
+<ul>
+<li>分片(Shard)和副本(Replica)</li>
+</ul>
+<p>ES的“分片(shard)”机制可将一个索引内部的数据分布地存储于多个节点，它通过将一个索引切分为多个底层物理的Lucene索引完成索引数据的分割存储功能，这每一个物理的Lucene索引称为一个分片(shard)。</p>
+<p>每个分片其内部都是一个全功能且独立的索引，因此可由集群中的任何主机存储。创建索引时，用户可指定其分片的数量，默认数量为5个。</p>
+<p>Shard有两种类型：primary和replica，即主shard及副本shard。</p>
+<p>Primary shard用于文档存储，每个新的索引会自动创建5个Primary shard，当然此数量可在索引创建之前通过配置自行定义，不过，一旦创建完成，其Primary shard的数量将不可更改。</p>
+<p>Replica shard是Primary Shard的副本，用于冗余数据及提高搜索性能。</p>
+<p>每个Primary shard默认配置了一个Replica shard，但也可以配置多个，且其数量可动态更改。ES会根据需要自动增加或减少这些Replica shard的数量。</p>
+<p>ES集群可由多个节点组成，各Shard分布式地存储于这些节点上。</p>
+<p>ES可自动在节点间按需要移动shard，例如增加节点或节点故障时。简而言之，分片实现了集群的分布式存储，而副本实现了其分布式处理及冗余功能。</p>
+<p>下面说说ES系统及插件。</p>
+<p>ES依赖于JDK，使用Oracke JDK或OpenJDK均可。</p>
+<p>JDK在不同平台的安装方式各异，具体方法这里不再介绍。ES的安装也非常容易，通常只需要简单修改其配置文件中的集群名称，并启动服务即可，这里不再赘述。</p>
+<p>ElasticSearch在设计上支持插件式体系结构，用户可根据需要通过插件来增强ElasticSearch的功能。</p>
+<p>目前，常用的通过插件扩展的功能包括添加自定义映射类型、自定义分析器、本地脚本、自定义发现方式等等。</p>
+<p>安装及移除插件</p>
+<p>插件的安装有两种方式：直接将插件放置于plugins目录中，或通过plugin脚本进行安装。</p>
+<p>Marvel、BigDesk及Head这三个是较为常用的插件。</p>
+<p>ElasticSearch提供了易用但功能强大的RESTful API以用于与集群进行交互，这些API大体可分为如下四类：</p>
+<ul>
+<li>(1) 检查集群、节点、索引等健康与否，以及获取其相关状态与统计信息；</li>
+<li>(2) 管理集群、节点、索引数据及元数据；</li>
+<li>(3) 执行CRUD操作及搜索操作；</li>
+<li>(4) 执行高级搜索操作，例如paging、filtering、scripting、faceting、aggregations及其它操作；</li>
+</ul>
+<p>下面简单说一说ES中的数据查询。</p>
+<p>Query API是ElasticSearch的API中较大的一部分，基于Query DSL(JSON based language for building complex queries)，可完成诸多类型查询操作，例如simple term query, phrase, range, boolean, fuzzy, span, wildcard, spatial等简单类型查询、组合简单查询类型为复杂类型查询，以及文档过滤等。</p>
+<p>另外，查询执行过程通常要分成两个阶段，分散阶段及合并阶段。</p>
+<p>分散阶段是向所查询的索引中的所有shard发起执行查询的过程，合并阶段是将各shard返回的结果合并、排序并响应给客户端的过程。</p>
+<p>向ElasticSearch发起查询操作有两种方式：一是通过RESTful request API传递查询参数，也称“query-string”；另一个是通过发送REST request body，也称作JSON格式。</p>
+<p>通过发送request body的方式进行查询，可以通过JSON定义查询体编写更具表现形式的查询请求。访问ElasticSearch的search API需要通过_search端点进行。例如，向students索引发起一个空查询。</p>
+<pre><code>curl -XGET &apos;localhost:9200/students/_search?pretty&apos;
+</code></pre><p>上面的查询命令也可改写为带request body的格式，其等同效果的命令如下。</p>
+<pre><code>curl -XGET &apos;localhost:9200/students/_search?pretty&apos; -d &apos;
+{ 
+  &quot;query&quot;: { &quot;match_all&quot;: { } }
+}&apos;
+</code></pre><p>此命令所示的查询语句是ElasticSearch提供的JSON风格的域类型查询语言，也即所谓的Query DSL。</p>
+<p>上面的命令中，“query”参数给出了查询定义，match_all给出了查询类型，它表示返回给定索引的所有文档。</p>
+<p>除了query参数之外，还可以额外指定其它参数来控制搜索结果，例如“size”参数可定义返回的文档数量(默认为10)，而“from”参数可指定结果集中要显示出的文档的起始偏移量(默认为0)，“sort”参数可指明排序规则等。</p>
+<p>ElasticSearch的大多数search API(除了Explain API)都支持多索引(mutli-index)和多类型(multi-type)。如果不限制查询时使用的索引和类型，查询请求将发给集群中的所有文档。</p>
+<p>ElasticSearch会把查询请求并行发给所有shard的主shard或某一副本shard，将返回的结果集中的前10返回给用户。</p>
+<p>不过，如果是想向某一或某些个索引的某一或某些类型发起查询请求，可通过指定查询的URL进行。</p>
+<pre><code>/_search：搜索所有索引的所有类型；
+/students/_search：搜索students索引的所有类型；
+/students,tutors/_search：搜索students和tutors索引的所有类型；
+/s*,t*/_search：搜索名称以s和t开头的所有索引的所有类型；
+/students/class1/_search：搜索students索引的class1类型；
+/_all/class1,class2/_search：搜索所有索引的class1和class2类型；
+</code></pre><p>索引一个文档时，Elasticsearch会取得其所有域的所有值，并将其连接起来合并为一个大字符串，其被索引为一个特殊域_all。</p>
+<p>在某次查询中，如果在query-string中未指定查询的域，则使用_all域进行查询。</p>
+<p>下面四个查询的功用会有所不同。前两个在_all域中搜索，而后两个将会在class域上做精确搜索。</p>
+<pre><code>GET /_search?q=&quot;Huashan&quot;
+GET /_search?q=&quot;Huashan Pai&quot;
+GET /_search?q=class:&quot;Huashan Pai&quot;
+GET /_search?q=class:&quot;Huahan&quot;
+</code></pre><p>需要注意的是，文档中每个域的值可能会存储为特定类型，而非字符串类型，因此，_all域的索引方式与特域的索引方式未必完全相同。</p>
+<p>文档中，域的数据存储时支持“string”、“numbers”、“Booleans”和“dates”几种类型，不同类型的数据在索引时是略有区别的。</p>
+<p>在创建文档时，Elasticsearch会通过检查域的值来动态为其创建mapping，可通过Mapping API来查看type的mapping，其访问端点是_mapping。</p>
+<p>下面，我们聊一个麻烦一点的问题，ES的精确值、full-text及倒排索引。</p>
+<p>ES的数据可被广义的分为两种类型：“types:exect”和“full-text”。</p>
+<p>精确值(Exact values)就是指数据未曾加工过的原始值，而Full-text则用于引用文本中的数据。</p>
+<p>在查询中，精确值是很容易进行搜索的，但full-text则需要判断文档在“多大程度上”匹配查询请求，换句话讲，即需要评估文档与给定查询的相关度(relevant)。</p>
+<p>因此，所谓的full-text查询通常是指在给定的文本域内部搜索指定的关键字，但搜索操作该需要真正理解查询者的目的，例如：</p>
+<ul>
+<li>(1) 搜索“UK”应该返回包含“United Kingdom”的相关文档；</li>
+<li>(2) 搜索“jump”应该返回包含“JUMP”、“jumped”、“jumps”、“jumping”甚至是“leap”的文档；</li>
+<li>(3) 搜索“johnny walker”应该匹配包含“Johnnie Walker”的文档；</li>
+</ul>
+<p>为了完成此类full-text域的搜索，ES必须首先分析文本并将其构建成为倒排索引(inverted index)，倒排索引由各文档中出现的单词列表组成，列表中的各单词不能重复且需要指向其所在的各文档。</p>
+<p>因此，为了创建倒排索引，需要先将各文档中域的值切分为独立的单词(也称为term或token)，而后将之创建为一个无重复的有序单词列表。这个过程称之为“分词(tokenization)”。</p>
+<p>其次，为了完成此类full-text域的搜索，倒排索引中的数据还需进行“正规化(normalization)”为标准格式，才能评估其与用户搜索请求字符串的相似度。</p>
+<p>例如，将所有大写字符转换为小写，将复数统一单数，将同义词统一进行索引等。</p>
+<p>另外，执行查询之前，还需要将查询字符串按照同与索引过程的同种格式进行“正规化(normalization)”。</p>
+<p>这里的“分词”及“正规化”操作也称为“分析(analysis)”。</p>
+<p>Analysis过程由两个步骤的操作组成：首先将文本切分为terms(词项)以适合构建倒排索引，其次将各terms正规化为标准形式以提升其“可搜索度”。这两个步骤由分析器(analyzers)完成。</p>
+<p>一个分析器通常需要由三个组件构成：字符过滤器(Character filters)、分词器(Tokenizer)和分词过滤器(Token filters)组成。</p>
+<p>字符过滤器：在文本被切割之前进行清理操作，例如移除HTML标签，将&amp;替换为字符等；</p>
+<p>分词器：将文本切分为独立的词项；简单的分词器通常是根据空白及标点符号进行切分；</p>
+<p>分词过滤器：转换字符(如将大写转为小写)、移除词项(如移除a、an、of及the等)或者添加词项(例如，添加同义词)；</p>
+<p>Elasticsearch内置了许多字符过滤器、分词器和分词过滤器，用户可按需将它们组合成“自定义”的分析器。</p>
+<p>固然，创建倒排索引时需要用到分析器，但传递搜索字符串时也可能需要分析器，甚至还要用到与索引创建时相同的分析器才能保证单词匹配的精确度。</p>
+<p>执行full-text域搜索时，需要用到分析器，但执行精确值搜索时，查询过程不会分析查询字符串而是直接进行精确值匹配。</p>
+<p>最后说一说Queries and Filters。</p>
+<p>尽管统一称之为query DSL，事实上Elasticsearch中存在两种DSL：查询DSL(query DSL)和过滤DSL(filter DSL)。</p>
+<p>查询子句和过滤子句的自然属性非常相近，但在使用目的上略有区别。</p>
+<p>简单来讲，当执行full-text查询或查询结果依赖于相关度分值时应该使用查询DSL，当执行精确值(extac-value)查询或查询结果仅有“yes”或“no”两种结果时应该使用过滤DSL。</p>
+<p>Filter DSL计算及过滤速度较快，且适于缓存，因此可有效提升后续查询请求的执行速度。</p>
+<p>而query DSL不仅要查找匹配的文档，还需要计算每个文件的相关度分值，因此为更重量级的查询，其查询结果不会被缓存。</p>
+<p>不过，得益于倒排索引，一个仅返回少量文档的简单query或许比一个跨数百万文档的filter执行起来并得显得更慢。</p>
+<p>Elasticsearch支持许多的query和filter，但最常用的也不过几种。</p>
+<p>Filter DSL中常见的有term Filter、terms Filter、range Filter、exists and missing Filters和bool Filter。</p>
+<p>而Query DSL中常见的有match_all、match 、multi_match及bool Query。鉴于时间关系，这里不再细述，朋友们可参考官方文档学习。</p>
+<p>Queries用于查询上下文，而filters用于过滤上下文，不过，Elasticsearch的API也支持此二者合并运行。</p>
+<p>组合查询可用于合并查询子句，组合过滤用于合并过滤子句，然而，Elasticsearch的使用习惯中，也常会把filter用于query上进行过滤。不过，很少有机会需要把query用于filter上的。</p>
+
+        </div>
+        <div class="post-tool">
+            <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
+                <i class="fa fa-thumbs-up" aria-hidden="true"></i> 打赏
+            </a>
+        </div>
+        
+        <div class="post-tags">Tags：
+            
+            <a href="/tags/ES/">ES</a>
+            
+        </div>
+        
+    </article>
+    
+    
+</div>
+<!--<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>->
+        </div><!-- end #main-->
+    </div><!-- end #body -->
+    <footer class="footer">
+    <div class="footer-inner">
+        <p>
+            <!-- 
+            <a href="/about"  title="About">About</a>&nbsp;&nbsp<em>·</em>&nbsp;&nbsp
+            -->
+        </p>
+        <p>
+            <br><center>Yaosine.github.io © 2018 </center>
+            <!--，已建立<a href="/timeline" id="siteBuildingTime"></a>天<br/>
+            ©2018 -->
+        </p>
+        
+
+    </div>
+</footer>
+<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+<script src="/js/InsightSearch.js"></script>
+<script src="/js/SimpleCore.js"></script>
+</div>
+<div class="fixed-btn">
+    <a class="btn-gotop" href="javascript:"> <i class="fa fa-angle-up"></i></a>
+</div>
+<script>
+    $(function () {
+        SimpleCore.init({
+            buildingTime: '09/20/2012',
+            current: $('.post-tags').length > 0 ? 'post' : 'archive',
+            //snsQRCode: '/images/sns-qrcode.png',
+            donateImg: '/images/donate-qr.png',
+        });
+    });
+</script>
+</body>
+</html>
