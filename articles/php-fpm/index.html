@@ -17,11 +17,11 @@
 <link rel="shortcut icon" href="/images/favicon.png">
 
 
-<title>php7新特性 - Web架构之路 - The way of Web Architecture</title>
+<title>nginx+php-fpm运行原理 - Web架构之路 - The way of Web Architecture</title>
 
 <meta name="keywords" content="">
 
-<meta name="description " content="PHP7在函数返回值类型声明、标量类型声明等方面进行了革新">
+<meta name="description " content="nginx怎样与php-fpm结合？运行原理和完整的流程是这样的？">
 </head>
 <body>
 <div id="nav">
@@ -114,7 +114,7 @@
         <li><a href="/">Home</a></li>
         
             
-                <li class="active">
+                <li class="">
                     <a href="/categories/PHP" data-name="PHP">PHP</a>
                 </li>
             
@@ -130,7 +130,7 @@
                     <a href="/categories/NoSQL" data-name="NoSQL">NoSQL</a>
                 </li>
             
-                <li class="">
+                <li class="active">
                     <a href="/categories/Nginx" data-name="Nginx">Nginx</a>
                 </li>
             
@@ -205,116 +205,116 @@
                 </a>
                 <p><span class="label">作者</span>
                     <a href="" target="_blank"></a>
-                    <span title="最后编辑于2015-07-15">2015-07-15</span>
+                    <span title="最后编辑于2016-11-03">2016-11-03</span>
                 </p>
                 <p></p>
             </div>
             -->
-            <h2 class="post-title">PHP7新特性</h2>
+            <h2 class="post-title">Nginx+php-fpm运行原理</h2>
             <div class="post-meta">
-                本文发布于：2015-07-15，总共2225个字<!--，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴-->
+                本文发布于：2016-11-03，总共2796个字<!--，您是第<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>位看到它的小伙伴-->
             </div>
         </div>
         <div class="post-content markdown-body">
-            <h2 id="1-运算符（NULL-合并运算符）"><a href="#1-运算符（NULL-合并运算符）" class="headerlink" title="1. ??运算符（NULL 合并运算符）"></a>1. ??运算符（NULL 合并运算符）</h2><p>这是一个很实用的用法：</p>
-<p>$a = $_GET[‘a’] ?? 1;</p>
-<p>它相当于：</p>
-<p>$a = isset($_GET[‘a’]) ? $_GET[‘a’] : 1;</p>
-<p>我们知道三元运算符是可以这样用的：</p>
-<p>$a ?: 1</p>
-<p>但是这是建立在 $a 已经定义了的前提上。新增的 ?? 运算符可以简化判断。</p>
-<h2 id="2-函数返回值类型声明"><a href="#2-函数返回值类型声明" class="headerlink" title="2. 函数返回值类型声明"></a>2. 函数返回值类型声明</h2><p>官方文档提供的例子（注意 … 的边长参数语法在 PHP 5.6 以上的版本中才有）：</p>
-<pre><code>function arraysSum(array ...$arrays): array 
-
-{ 
-
-　　return array_map(function(array $array): int { 
-
-　　　　return array_sum($array); 
-
- 　　}, $arrays); 
-
-} 
-
-print_r(arraysSum([1,2,3], [4,5,6], [7,8,9])); 
-</code></pre><p>以上输出：</p>
-<pre><code>Array
-(
-    [0] =&gt; 6
-    [1] =&gt; 15
-    [2] =&gt; 24
-)
-</code></pre><p>从这个例子中可以看出现在函数（包括匿名函数）都可以指定返回值的类型。</p>
-<p>这个特性可以帮助我们避免一些 PHP 的隐式类型转换带来的问题。在定义一个函数之前就想好预期的结果可以避免一些不必要的错误。</p>
-<p>不过这里也有一个特点需要注意。PHP 7 增加了一个 declare 指令：strict_types，既使用严格模式。</p>
-<p>使用返回值类型声明时，如果没有声明为严格模式，如果返回值不是预期的类型，PHP 还是会对其进行强制类型转换。但是如果是严格模式， 则会出发一个 TypeError 的 Fatal error。</p>
-<p><strong>强制模式</strong>：</p>
-<pre><code>function foo($a) : int 
-
-{ 
-
-　　return $a; 
-
-} 
-
-foo(1.0); 
-</code></pre><p>以上代码可以正常执行，foo 函数返回 int 1，没有任何错误。</p>
-<p><strong>严格模式：</strong></p>
-<pre><code>declare(strict_types=1); 
-
-function foo($a) : int 
-
-{ 
-
-　　return $a; 
-
-} 
-
-foo(1.0); 
-</code></pre><blockquote>
-<p>PHP Fatal error:  Uncaught TypeError: Return value of foo() must be of the type integer, float returned in test.php:6 </p>
-</blockquote>
-<p>在声明之后，就会触发致命错误。</p>
-<p>是不是有点类似与 js 的 strict mode？</p>
-<h2 id="3-标量类型声明"><a href="#3-标量类型声明" class="headerlink" title="3. 标量类型声明"></a>3. 标量类型声明</h2><p>PHP 7 中的函数的形参类型声明可以是标量了。在 PHP 5 中只能是类名、接口、array 或者 callable (PHP 5.4，即可以是函数，包括匿名函数)，现在也可以使用 string、int、float和 bool 了。</p>
-<p>官方示例：</p>
-<pre><code>// Coercive mode 
-
-function sumOfInts(int ...$ints) 
-
-{ 
-
-　　return array_sum($ints); 
-
-} 
-
-var_dump(sumOfInts(2, &apos;3&apos;, 4.1)); 
-</code></pre><p>以上输出：</p>
+            <h2 id="一、代理与反向代理"><a href="#一、代理与反向代理" class="headerlink" title="一、代理与反向代理"></a>一、代理与反向代理</h2><p>现实生活中的例子</p>
+<p>1、<strong>正向代理</strong>：访问google.com</p>
+<p><img src="/images/posts/nginx1.png" alt="image"></p>
+<p>如上图，因为google被墙，我们需要vpn翻墙才能访问google.com。</p>
 <blockquote>
-<p>int(9)</p>
+<p>vpn对于“我们”来说，是可以感知到的（我们连接vpn）<br>vpn对于”google服务器”来说，是不可感知的(google只知道有http请求过来)。</p>
 </blockquote>
-<p>需要注意的是上文提到的严格模式的问题在这里同样适用：强制模式（默认，既强制类型转换）下还是会对不符合预期的参数进行强制类型转换，严格模式下则触发 TypeError 的致命错误。</p>
-<h2 id="4-use批量声明"><a href="#4-use批量声明" class="headerlink" title="4. use批量声明"></a>4. use批量声明</h2><p>PHP 7 中 use 可以在一句话中声明多个类或函数或 const 了：</p>
-<pre><code>use some/namespace/{ClassA, ClassB, ClassC as C}; 
-
-use function some/namespace/{fn_a, fn_b, fn_c}; 
-
-use const some/namespace/{ConstA, ConstB, ConstC}; 
-</code></pre><p>但还是要写出每个类或函数或 const 的名称（并没有像 python 一样的 from some import * 的方法）。</p>
-<p>需要留意的问题是：如果你使用的是基于 composer 和 PSR-4 的框架，这种写法是否能成功的加载类文件？其实是可以的，composer 注册的自动加载方法是在类被调用的时候根据类的命名空间去查找位置，这种写法对其没有影响。</p>
-<h2 id="5-其它特性"><a href="#5-其它特性" class="headerlink" title="5. 其它特性"></a>5. 其它特性</h2><ul>
-<li>PHP 5.3 开始有了匿名函数，现在又有了匿名类了；</li>
-<li>define 现在可以定义常量数组；</li>
-<li>闭包（ Closure）增加了一个 call 方法；</li>
-<li>生成器（或者叫迭代器更合适）可以有一个最终返回值（return），也可以通过 yield from 的新语法进入一个另外一个生成器中（生成器委托）。</li>
-<li>生成器的两个新特性（return 和 yield from）可以组合。具体的表象大家可以自行测试。PHP 7 现在已经到 RC5 了，最终的版本应该会很快到来。</li>
-</ul>
-<p>其它特性可以查看官方文档：</p>
+<p>对于人来说可以感知到，但服务器感知不到的服务器，我们叫他正向代理服务器。</p>
+<p>2、<strong>反向代理</strong>：通过反向代理实现负载均衡</p>
+<p><img src="/images/posts/nginx2.png" alt="image"></p>
+<p>如上图，我们访问baidu.com的时候，baidu有一个代理服务器，通过这个代理服务器，可以做负载均衡，路由到不同的server。</p>
+<p>此代理服务器,对于“我们”来说是不可感知的(我们只能感知到访问的是百度的服务器，不知道中间还有代理服务器来做负载均衡)。</p>
+<p>此代理服务器，对于”server1 server2 server3”是可感知的(代理服务器负载均衡路由到不同的server)</p>
+<p>对于人来说不可感知，但对于服务器来说是可以感知的，我们叫他反向代理服务器</p>
+<p>说白了：“正向”、“反向”是相对于人的感知来说的。</p>
+<p><strong>人能感受到的代理就是正向代理，人感受不到的代理就是反向代理。</strong></p>
+<h2 id="二、Nginx与Php-fpm"><a href="#二、Nginx与Php-fpm" class="headerlink" title="二、Nginx与Php-fpm"></a>二、Nginx与Php-fpm</h2><p>Nginx是什么</p>
 <blockquote>
-<p><a href="http://php.net/manual/en/migration70.new-features.php" target="_blank" rel="noopener">http://php.net/manual/en/migration70.new-features.php</a></p>
+<p>Nginx (“engine x”) 是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器。<br>Php-fpm是什么</p>
 </blockquote>
-<p>参考资料：<a href="http://0x1.im/blog/php/part-of-php7-new-features.html" target="_blank" rel="noopener">http://0x1.im/blog/php/part-of-php7-new-features.html</a></p>
+<h3 id="1、cgi、fast-cgi协议"><a href="#1、cgi、fast-cgi协议" class="headerlink" title="1、cgi、fast-cgi协议"></a>1、cgi、fast-cgi协议</h3><p>cgi的历史</p>
+<p>早期的webserver只处理html等静态文件，但是随着技术的发展，出现了像php等动态语言。<br>webserver处理不了了，怎么办呢？那就交给php解释器来处理吧！<br>交给php解释器处理很好，但是，php解释器如何与webserver进行通信呢？</p>
+<p>为了解决不同的语言解释器(如php、python解释器)与webserver的通信，于是出现了cgi协议。只要你按照cgi协议去编写程序，就能实现语言解释器与webwerver的通信。如php-cgi程序。<br>fast-cgi的改进</p>
+<p>有了cgi协议，解决了php解释器与webserver通信的问题，webserver终于可以处理动态语言了。<br>但是，webserver每收到一个请求，都会去fork一个cgi进程，请求结束再kill掉这个进程。这样有10000个请求，就需要fork、kill php-cgi进程10000次。</p>
+<p>有没有发现很浪费资源？</p>
+<p>于是，出现了cgi的改良版本，fast-cgi。fast-cgi每次处理完请求后，不会kill掉这个进程，而是保留这个进程，使这个进程可以一次处理多个请求。这样每次就不用重新fork一个进程了，大大提高了效率。</p>
+<h3 id="2、php-fpm是什么"><a href="#2、php-fpm是什么" class="headerlink" title="2、php-fpm是什么"></a>2、php-fpm是什么</h3><p>php-fpm即php-Fastcgi Process Manager.<br>php-fpm是 FastCGI 的实现，并提供了进程管理的功能。<br>进程包含 master 进程和 worker 进程两种进程。</p>
+<p>master 进程只有一个，负责监听端口，接收来自 Web Server 的请求，而 worker 进程则一般有多个(具体数量根据实际需要配置)，每个进程内部都嵌入了一个 PHP 解释器，是 PHP 代码真正执行的地方。</p>
+<h2 id="三、Nginx如何与Php-fpm结合"><a href="#三、Nginx如何与Php-fpm结合" class="headerlink" title="三、Nginx如何与Php-fpm结合"></a>三、Nginx如何与Php-fpm结合</h2><p>上面我们说了，Nginx不只有处理http请求的功能，还能做反向代理。<br>Nginx通过反向代理功能将动态请求转向后端Php-fpm。</p>
+<p>下面我们解释一下配置项的含义:</p>
+<pre><code>server {
+    listen       80; #监听80端口，接收http请求
+    server_name  www.example.com; #就是网站地址
+    root /usr/local/etc/nginx/www/huxintong_admin; # 准备存放代码工程的路径
+    #路由到网站根目录www.example.com时候的处理
+    location / {
+        index index.php; #跳转到www.example.com/index.php
+        autoindex on;
+    }   
 
+    #当请求网站下php文件的时候，反向代理到php-fpm
+    location ~ \.php$ {
+        include /usr/local/etc/nginx/fastcgi.conf; #加载nginx的fastcgi模块
+        fastcgi_intercept_errors on;
+        fastcgi_pass   127.0.0.1:9000; #nginx fastcgi进程监听的IP地址和端口
+    }
+
+}
+</code></pre><p>总而言之：当我们访问www.example.com的时候，处理流程是这样的：</p>
+<pre><code>  www.example.com
+        |
+        |
+      Nginx
+        |
+        |
+路由到www.example.com/index.php
+        |
+        |
+加载nginx的fast-cgi模块
+        |
+        |
+fast-cgi监听127.0.0.1:9000地址
+        |
+        |
+www.example.com/index.php请求到达127.0.0.1:9000
+        |
+        |
+     等待处理...
+</code></pre><p>php-fpm模块监听127.0.0.1:9000端口，等待请求到来去处理。</p>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>nginx与php-fpm的结合，完整的流程是这样的。</p>
+<pre><code> www.example.com
+        |
+        |
+      Nginx
+        |
+        |
+路由到www.example.com/index.php
+        |
+        |
+加载nginx的fast-cgi模块
+        |
+        |
+fast-cgi监听127.0.0.1:9000地址
+        |
+        |
+www.example.com/index.php请求到达127.0.0.1:9000
+        |
+        |
+php-fpm 监听127.0.0.1:9000
+        |
+        |
+php-fpm 接收到请求，启用worker进程处理请求
+        |
+        |
+php-fpm 处理完请求，返回给nginx
+        |
+        |
+nginx将结果通过http返回给浏览器
+</code></pre>
         </div>
         <div class="post-tool">
             <a class="btn-thumbs-up" href="javascript:void(0);" data-cid="52" title="95">
@@ -324,7 +324,11 @@ use const some/namespace/{ConstA, ConstB, ConstC};
         
         <div class="post-tags">标签：
             
+            <a href="/tags/Nginx/">Nginx</a>
+            
             <a href="/tags/PHP/">PHP</a>
+            
+            <a href="/tags/fpm/">fpm</a>
             
         </div>
         
